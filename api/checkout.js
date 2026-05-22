@@ -1,6 +1,3 @@
-// api/checkout.js — Creates a Stripe checkout session
-// STRIPE_SECRET_KEY lives on the server, never sent to the browser
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -13,9 +10,9 @@ export default async function handler(req, res) {
   }
 
   const validPrices = [
-    "price_1TZaZBG4d0qXhaypu2eBPcNg", // Starter €99
-    "price_1TZaa8G4d0qXhaypiJccAh0R", // Growth €249
-    "price_1TZaaoG4d0qXhaypQuwu4ENv", // Scale €449
+    "price_1TZaZBG4d0qXhaypu2eBPcNg",
+    "price_1TZaa8G4d0qXhaypiJccAh0R",
+    "price_1TZaaoG4d0qXhaypQuwu4ENv",
   ];
 
   if (!validPrices.includes(priceId)) {
@@ -38,7 +35,6 @@ export default async function handler(req, res) {
         "billing_address_collection": "auto",
         "allow_promotion_codes": "true",
         "subscription_data[metadata][plan]": planName,
-        "customer_creation": "always",
         "locale": "en",
       }),
     });
