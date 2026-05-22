@@ -208,7 +208,7 @@ export default function App() {
             <a href="#services" className="nav-link">Services</a>
             <a href="#pricing" className="nav-link">Pricing</a>
             <a href="#ai" className="nav-link">AI assistant</a>
-            <a href="tel:+34658208448" className="nav-cta">Free 30-min call</a>
+            <a href="mailto:cashinify@gmail.com?subject=Free 30-min call with FoundrBooks" className="nav-cta">Free 30-min call</a>
           </div>
         </nav>
         <div className="hero-content">
@@ -343,7 +343,7 @@ export default function App() {
             </div>
           </div>
           <div className="how-cta">
-            <a href="tel:+34658208448" className="btn-primary" style={{ display: "inline-block", background: "#185FA5", color: "#E6F1FB", textDecoration: "none" }}>Book your free call →</a>
+            <a href="mailto:cashinify@gmail.com?subject=Free 30-min call with FoundrBooks" className="btn-primary" style={{ display: "inline-block", background: "#185FA5", color: "#E6F1FB", textDecoration: "none" }}>Book your free call →</a>
             <span className="how-note">No commitment · 30 minutes · ACA qualified accountant</span>
           </div>
         </section>
