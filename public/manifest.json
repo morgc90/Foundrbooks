@@ -1,0 +1,14 @@
+{
+  "short_name": "FoundrBooks",
+  "name": "FoundrBooks — Accounting for UK Founders",
+  "description": "AI-powered accounting for UK founders, startups, and limited companies. ACA qualified.",
+  "icons": [
+    { "src": "favicon.ico", "sizes": "64x64 32x32 24x24 16x16", "type": "image/x-icon" }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#185FA5",
+  "background_color": "#ffffff",
+  "categories": ["finance", "business", "productivity"],
+  "lang": "en-GB"
+}
