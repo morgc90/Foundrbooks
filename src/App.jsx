@@ -208,7 +208,7 @@ export default function App() {
             <a href="#services" className="nav-link">Services</a>
             <a href="#pricing" className="nav-link">Pricing</a>
             <a href="#ai" className="nav-link">AI assistant</a>
-            <a href="tel:+34658208448" className="nav-cta">Book a call</a>
+            <a href="tel:+34658208448" className="nav-cta">Free 30-min call</a>
           </div>
         </nav>
         <div className="hero-content">
@@ -314,6 +314,37 @@ export default function App() {
                 <div className="service-desc">{s.desc}</div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section className="section how-section">
+          <div className="section-label">How it works</div>
+          <h2>Up and running in 3 steps.</h2>
+          <p className="section-sub">Switching accountants or starting fresh — we make it completely painless.</p>
+          <div className="steps-grid">
+            <div className="step-card">
+              <div className="step-num">01</div>
+              <div className="step-icon">📞</div>
+              <div className="step-name">Book a free 30-min call</div>
+              <div className="step-desc">We learn about your business, answer your questions, and recommend the right plan. No pressure, no commitment.</div>
+            </div>
+            <div className="step-card">
+              <div className="step-num">02</div>
+              <div className="step-icon">⚙️</div>
+              <div className="step-name">We set everything up</div>
+              <div className="step-desc">We handle the transition from your old accountant, connect your accounts, and get your books in order. You don't lift a finger.</div>
+            </div>
+            <div className="step-card">
+              <div className="step-num">03</div>
+              <div className="step-icon">😌</div>
+              <div className="step-name">Sit back and relax</div>
+              <div className="step-desc">Your books are handled, your taxes are filed on time, and your AI assistant is available 24/7 for any questions.</div>
+            </div>
+          </div>
+          <div className="how-cta">
+            <a href="tel:+34658208448" className="btn-primary" style={{ display: "inline-block", background: "#185FA5", color: "#E6F1FB", textDecoration: "none" }}>Book your free call →</a>
+            <span className="how-note">No commitment · 30 minutes · ACA qualified accountant</span>
           </div>
         </section>
 
