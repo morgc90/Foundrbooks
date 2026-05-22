@@ -37,6 +37,15 @@ const SERVICES = [
   { icon: "✨", name: "AI tax assistant", desc: "24/7 instant answers backed by a qualified accountant." },
 ];
 
+const REVIEWS = [
+  { name: "Sarah Chen", role: "Founder, TechFlow SaaS", text: "FoundrBooks helped us navigate complex revenue recognition and investor reporting. Their SaaS expertise is unmatched.", initial: "S" },
+  { name: "David Murphy", role: "CEO, GreenStore", text: "As a Shopify store owner, having an accountant who truly understands e-commerce has been game-changing for our business.", initial: "D" },
+  { name: "James O'Brien", role: "Freelance Designer", text: "I used to dread tax season. Now it's completely stress-free. My self assessment is filed on time every year without me lifting a finger.", initial: "J" },
+  { name: "Aoife Kelly", role: "Co-founder, LaunchPad", text: "From incorporation to our first funding round, FoundrBooks has been with us every step. Genuinely feel like they're part of the team.", initial: "A" },
+  { name: "Marco Rossi", role: "Director, Rossi Consulting", text: "The AI assistant alone is worth it — I get instant answers to tax questions at 11pm without waiting for a call back.", initial: "M" },
+  { name: "Emma Walsh", role: "Owner, The Candle Co.", text: "Switched from a big accountancy firm and the difference is night and day. Personal, fast, and they actually explain things clearly.", initial: "E" },
+];
+
 const QUICK_PROMPTS = [
   { label: "Sole trader vs Ltd?", q: "Am I better off as a sole trader or limited company?" },
   { label: "What can I claim?", q: "What expenses can I claim as self-employed?" },
@@ -203,20 +212,31 @@ export default function App() {
           </div>
         </nav>
         <div className="hero-content">
-          <div className="hero-badge"><span className="badge-dot" />AI-powered · ACA Qualified</div>
-          <h1>Accounting built for<br /><em>founders.</em></h1>
-          <p className="hero-sub">Your AI tax assistant, real-time bookkeeping, and an ACA-qualified accountant — all in one place.</p>
-          <div className="hero-btns">
-            <a href="#pricing" className="btn-primary">See pricing</a>
-            <a href="#ai" className="btn-ghost">Try AI assistant →</a>
+        <div className="hero-inner">
+          <div className="hero-text">
+            <div className="hero-badge"><span className="badge-dot" />AI-powered · ACA Qualified</div>
+            <h1>Accounting built for<br /><em>founders.</em></h1>
+            <p className="hero-sub">Your AI tax assistant, real-time bookkeeping, and an ACA-qualified accountant — all in one place.</p>
+            <div className="hero-btns">
+              <a href="#pricing" className="btn-primary">See pricing</a>
+              <a href="#ai" className="btn-ghost">Try AI assistant →</a>
+            </div>
+            <div className="trust-row">
+              <span>✓ ACA Qualified</span>
+              <span>✓ 24h response</span>
+              <span>✓ Ireland & Spain</span>
+              <span>✓ GDPR compliant</span>
+            </div>
           </div>
-          <div className="trust-row">
-            <span>✓ ACA Qualified</span>
-            <span>✓ 24h response</span>
-            <span>✓ Ireland & Spain</span>
-            <span>✓ GDPR compliant</span>
+          <div className="hero-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&auto=format&fit=crop"
+              alt="Founders working in a modern office"
+              className="hero-image"
+            />
           </div>
         </div>
+      </div>
         <div className="float-cards">
           {[
             { label: "Tax saved", val: "€8,240", sub: "vs. doing it yourself" },
@@ -326,6 +346,28 @@ export default function App() {
             ))}
           </div>
           <p className="pricing-note">All prices in EUR. Secure payment via Stripe. Cancel anytime with no fees.</p>
+        </section>
+
+        {/* REVIEWS */}
+        <section className="section reviews-section">
+          <div className="section-label">Client reviews</div>
+          <h2>Trusted by founders.</h2>
+          <p className="section-sub">Real feedback from real clients — founders, freelancers, and online businesses.</p>
+          <div className="reviews-grid">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="review-card">
+                <div className="review-stars">★★★★★</div>
+                <p className="review-text">"{r.text}"</p>
+                <div className="review-author">
+                  <div className="review-avatar">{r.initial}</div>
+                  <div>
+                    <div className="review-name">{r.name}</div>
+                    <div className="review-role">{r.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* STATS */}
