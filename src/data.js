@@ -2,13 +2,26 @@
 
 export const CONTACT = {
   email: "cashinify@gmail.com",
-  phone: "+34 658 208 448",
-  phoneHref: "tel:+34658208448",
+  // The number is never displayed on the site — it only lives inside the
+  // wa.me deep link so visitors start a WhatsApp chat instead of dialling.
+  whatsapp: "https://wa.me/34658208448",
+  whatsappText: "Hi FoundrBooks — I'd like to ask about accounting for my company.",
   callSubject: "Free 30-min call with FoundrBooks",
 };
 
+export const whatsappLink = (text = CONTACT.whatsappText) =>
+  `${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+
 export const mailto = (subject = CONTACT.callSubject) =>
   `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}`;
+
+// Independent verification of the practice's credentials.
+export const CREDENTIAL = {
+  name: "Morgan Cashin",
+  body: "Chartered Accountants Ireland",
+  directoryUrl:
+    "https://www.charteredaccountants.ie/Find-a-Firm/Firms-Directory?type=members&country=98&city=dublin&memberName=morgan%20cashin",
+};
 
 export const PLANS = [
   {
@@ -40,9 +53,9 @@ export const PLANS = [
 export const SERVICES = [
   { icon: "🚀", name: "Startup accounting", desc: "Bookkeeping from incorporation through to Series A and beyond." },
   { icon: "🔁", name: "SaaS finance", desc: "MRR tracking, IFRS 15 compliance, and investor-ready metrics.", to: "/saas-accounting" },
-  { icon: "🛒", name: "Shopify bookkeeping", desc: "Inventory, multi-currency, and payment gateway reconciliation." },
-  { icon: "🧾", name: "VAT & compliance", desc: "VAT registration, filing, and cross-border EU compliance." },
-  { icon: "👤", name: "Self-employed", desc: "Self assessment, expenses, and tax planning for freelancers." },
+  { icon: "🔬", name: "R&D tax credits", desc: "35% in Ireland, merged RDEC in the UK — claims we can defend.", to: "/rd-tax-credits" },
+  { icon: "🧾", name: "VAT & cross-border", desc: "Registration, OSS, and digital services VAT across the UK and EU.", to: "/vat-digital-services" },
+  { icon: "🏛️", name: "Ireland or UK?", desc: "Where to incorporate, and what each choice costs you in tax.", to: "/ireland-vs-uk-company" },
   { icon: "✨", name: "AI tax assistant", desc: "24/7 instant answers backed by a qualified accountant." },
 ];
 
@@ -59,5 +72,13 @@ export const QUICK_PROMPTS = [
   { label: "Sole trader vs Ltd?", q: "Am I better off as a sole trader or limited company?" },
   { label: "What can I claim?", q: "What expenses can I claim as self-employed?" },
   { label: "VAT threshold?", q: "When do I need to register for VAT?" },
-  { label: "Paying myself?", q: "How do I pay myself from my limited company?" },
+  { label: "Ireland or UK?", q: "Should I incorporate my company in Ireland or the UK?" },
+];
+
+// Cross-links shown at the foot of each guide page.
+export const GUIDES = [
+  { to: "/saas-accounting", name: "SaaS accounting", desc: "Revenue recognition, deferred revenue and ARR reporting." },
+  { to: "/rd-tax-credits", name: "R&D tax credits", desc: "What qualifies, what it's worth, and how to claim." },
+  { to: "/vat-digital-services", name: "VAT on digital services", desc: "OSS, reverse charge and cross-border thresholds." },
+  { to: "/ireland-vs-uk-company", name: "Ireland or UK?", desc: "Where to incorporate and what it costs in tax." },
 ];

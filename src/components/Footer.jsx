@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CONTACT } from "../data";
+import { CONTACT, CREDENTIAL, GUIDES, whatsappLink } from "../data";
 
 export default function Footer() {
   return (
@@ -10,28 +10,44 @@ export default function Footer() {
             Foundr<span>Books</span>
           </div>
           <p className="footer-desc">
-            Specialist accounting for online founders, freelancers, and the self-employed. ACA qualified.
+            Specialist accounting for founders, freelancers and the self-employed across the UK
+            and Ireland.
           </p>
+          <a
+            className="footer-credential"
+            href={CREDENTIAL.directoryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {CREDENTIAL.name} · listed with {CREDENTIAL.body} ↗
+          </a>
         </div>
         <div className="footer-links">
           <div className="footer-col">
+            <div className="footer-col-title">Guides</div>
+            {GUIDES.map((g) => (
+              <Link key={g.to} to={g.to}>{g.name}</Link>
+            ))}
+          </div>
+          <div className="footer-col">
             <div className="footer-col-title">Services</div>
-            <Link to="/saas-accounting">SaaS accounting</Link>
             <a href="/#services">Startup accounting</a>
-            <a href="/#services">Shopify bookkeeping</a>
-            <a href="/#services">VAT &amp; compliance</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="/#ai">AI tax assistant</a>
           </div>
           <div className="footer-col">
             <div className="footer-col-title">Contact</div>
+            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+              Chat on WhatsApp
+            </a>
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
             <Link to="/">foundrbooks.com</Link>
           </div>
         </div>
       </div>
       <div className="footer-bottom">
         <span>© 2026 FoundrBooks. All rights reserved.</span>
-        <span>ACA Qualified · Ireland &amp; Spain · Payments by Stripe</span>
+        <span>Chartered accountant · UK &amp; Ireland · Payments by Stripe</span>
       </div>
     </footer>
   );

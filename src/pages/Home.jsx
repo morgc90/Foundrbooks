@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import HeroVisual from "../components/HeroVisual";
-import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CONTACT, mailto } from "../data";
+import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CREDENTIAL, mailto } from "../data";
 
 export default function Home() {
   const canvasRef = useRef(null);
@@ -163,11 +163,19 @@ export default function Home() {
                 <a href="#ai" className="btn-ghost">Try AI assistant →</a>
               </div>
               <div className="trust-row">
-                <span>✓ ACA Qualified</span>
+                <span>✓ Chartered accountant</span>
                 <span>✓ 24h response</span>
-                <span>✓ Ireland &amp; Spain</span>
+                <span>✓ UK &amp; Ireland</span>
                 <span>✓ GDPR compliant</span>
               </div>
+              <a
+                className="hero-credential"
+                href={CREDENTIAL.directoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {CREDENTIAL.name} — verify with {CREDENTIAL.body} ↗
+              </a>
             </div>
             <div className="hero-image-wrap">
               <HeroVisual />

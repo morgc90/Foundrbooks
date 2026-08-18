@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import Nav from "../components/Nav";
+import PageHero from "../components/PageHero";
 import Footer from "../components/Footer";
-import { PLANS, mailto } from "../data";
+import FaqSection from "../components/FaqSection";
+import GuideLinks from "../components/GuideLinks";
+import CtaSection from "../components/CtaSection";
+import { PLANS } from "../data";
 import { SAAS_FAQ } from "../seo";
 
 const DIFFERENCES = [
@@ -42,21 +45,12 @@ const HANDLED = [
 export default function SaasAccounting() {
   return (
     <div className="app">
-      <div className="page-head">
-        <Nav />
-        <div className="page-head-inner">
-          <div className="hero-badge"><span className="badge-dot" />Specialist practice · ACA Qualified</div>
-          <h1>SaaS accounting for Irish &amp; UK <em>software companies.</em></h1>
-          <p className="hero-sub page-head-sub">
-            Most accountants can file your accounts. Few can tell you why your ARR says €40,000 and your
-            profit and loss account says €12,000 — or which number your investors actually want.
-          </p>
-          <div className="hero-btns">
-            <a href={mailto("SaaS accounting — free 30-min call")} className="btn-primary">Book a free 30-min call</a>
-            <a href="#pricing" className="btn-ghost">See pricing →</a>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        badge="Specialist practice · Chartered accountant"
+        title={<>SaaS accounting for Irish &amp; UK <em>software companies.</em></>}
+        sub="Most accountants can file your accounts. Few can tell you why your ARR says €40,000 and your profit and loss account says €12,000 — or which number your investors actually want."
+        ctaSubject="SaaS accounting — free 30-min call"
+      />
 
       <div className="main">
         <section className="section">
@@ -215,34 +209,16 @@ export default function SaasAccounting() {
           <p className="pricing-note">All prices in EUR. Secure payment via Stripe. Cancel anytime with no fees.</p>
         </section>
 
-        <section className="section faq-section">
-          <div className="section-label">FAQ</div>
-          <h2>SaaS accounting questions.</h2>
-          <div className="faq-list">
-            {SAAS_FAQ.map((item, i) => (
-              <div key={i} className="faq-item">
-                <h3>{item.q}</h3>
-                <p>{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <FaqSection items={SAAS_FAQ} heading="SaaS accounting questions." />
 
-        <section className="section cta-section">
-          <h2>Talk to an accountant who knows SaaS.</h2>
-          <p className="section-sub">ACA-qualified, working with software companies in Ireland and the UK.</p>
-          <div className="hero-btns">
-            <a href={mailto("SaaS accounting — free 30-min call")} className="btn-primary btn-primary-blue">
-              Book a free 30-min call →
-            </a>
-            <Link to="/" className="btn-ghost btn-ghost-light">Back to homepage</Link>
-          </div>
-          <p className="disclaimer">
-            Rates and thresholds stated on this page were correct as of August 2026 and are drawn from
-            Revenue and HMRC guidance. Tax legislation changes; this page is general information, not advice
-            for your specific circumstances.
-          </p>
-        </section>
+        <GuideLinks current="/saas-accounting" />
+
+        <CtaSection
+          heading="Talk to an accountant who knows SaaS."
+          sub="Chartered accountant, working with software companies across Ireland and the UK."
+          subject="SaaS accounting — free 30-min call"
+          disclaimer="Rates and thresholds stated on this page were correct as of August 2026 and are drawn from Revenue and HMRC guidance. Tax legislation changes; this page is general information, not advice for your specific circumstances."
+        />
       </div>
 
       <Footer />
