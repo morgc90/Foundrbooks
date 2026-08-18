@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /success
 
 Sitemap: https://foundrbooks.com/sitemap.xml
