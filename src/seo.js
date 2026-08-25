@@ -11,6 +11,10 @@ export const OG_IMAGE = `${SITE}/og-image.png`;
 
 const CAI_DIRECTORY =
   "https://www.charteredaccountants.ie/Find-a-Firm/Firms-Directory?type=members&country=98&city=dublin&memberName=morgan%20cashin";
+// Google Business Profile entity for FoundrBooks.
+// Feature ID 0x65d074cc8b461387:0xfe9137296501e28b -> CID 18343503408184550027.
+// Links the site to the Maps listing so Google treats them as one entity.
+const GBP_LISTING = "https://maps.google.com/?cid=18343503408184550027";
 
 const ORGANISATION = {
   "@context": "https://schema.org",
@@ -26,7 +30,8 @@ const ORGANISATION = {
   hasCredential: "ACA — member of Chartered Accountants Ireland",
   founder: { "@type": "Person", name: "Morgan Cashin" },
   memberOf: { "@type": "Organization", name: "Chartered Accountants Ireland" },
-  sameAs: [CAI_DIRECTORY],
+  sameAs: [CAI_DIRECTORY],              // before
+  sameAs: [CAI_DIRECTORY, GBP_LISTING], // after
   knowsAbout: [
     "UK Corporation Tax",
     "Irish Corporation Tax",
