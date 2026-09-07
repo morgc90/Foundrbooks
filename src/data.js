@@ -4,7 +4,7 @@ export const CONTACT = {
   email: "cashinify@gmail.com",
   // The number is never displayed on the site — it only lives inside the
   // wa.me deep link so visitors start a WhatsApp chat instead of dialling.
-  whatsapp: "https://wa.me/34658208448",
+  whatsapp: "https://wa.me/353874101271",
   whatsappText: "Hi FoundrBooks — I'd like to ask about accounting for my company.",
   callSubject: "Free 30-min call with FoundrBooks",
 };
