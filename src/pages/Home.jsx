@@ -5,6 +5,10 @@ import Footer from "../components/Footer";
 import HeroVisual from "../components/HeroVisual";
 import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CREDENTIAL, mailto } from "../data";
 
+// Free questions before the assistant asks for a conversation instead.
+const FREE_QUESTIONS = 4;
+const ASK_KEY = "fb_ai_asked";
+
 export default function Home() {
   const canvasRef = useRef(null);
   const chatEndRef = useRef(null);
@@ -95,6 +99,14 @@ export default function Home() {
     };
   }, []);
 
+  // Free questions before the assistant asks for a conversation. Deliberately a
+  // soft cap: it is a nudge to book a call, not a security control — the server
+  // enforces the real limit, because anything in the browser can be edited.
+  const [askedCount, setAskedCount] = useState(() => {
+    try { return Number(localStorage.getItem(ASK_KEY) || 0); } catch { return 0; }
+  });
+  const outOfQuestions = askedCount >= FREE_QUESTIONS;
+
   // Keep the chat pinned to the latest message — but never on first render,
   // which would yank the visitor past the hero to the middle of the page.
   const hasInteracted = useRef(false);
@@ -105,7 +117,7 @@ export default function Home() {
 
   async function sendMessage(text) {
     const userText = text || input.trim();
-    if (!userText || loading) return;
+    if (!userText || loading || askedCount >= FREE_QUESTIONS) return;
     hasInteracted.current = true;
     setInput("");
     const newMessages = [...messages, { role: "user", content: userText }];
@@ -119,6 +131,10 @@ export default function Home() {
       });
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
+      // Count only answered questions, so a failed request doesn't burn a turn.
+      const used = askedCount + 1;
+      setAskedCount(used);
+      try { localStorage.setItem(ASK_KEY, String(used)); } catch {}
     } catch {
       setMessages([...newMessages, { role: "assistant", content: "Connection error. Please try again." }]);
     }
@@ -248,22 +264,47 @@ export default function Home() {
               )}
               <div ref={chatEndRef} />
             </div>
-            <div className="quick-row">
-              {QUICK_PROMPTS.map((p, i) => (
-                <button key={i} className="qpill" onClick={() => sendMessage(p.q)}>{p.label}</button>
-              ))}
-            </div>
-            <div className="input-row">
-              <input
-                className="chat-input"
-                placeholder="Ask any tax or accounting question..."
-                aria-label="Ask any tax or accounting question"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              />
-              <button className="send-btn" onClick={() => sendMessage()} disabled={loading} aria-label="Send message">↑</button>
-            </div>
+            {!outOfQuestions && (
+              <div className="quick-row">
+                {QUICK_PROMPTS.map((p, i) => (
+                  <button key={i} className="qpill" onClick={() => sendMessage(p.q)}>{p.label}</button>
+                ))}
+              </div>
+            )}
+            {outOfQuestions ? (
+              <div className="ai-gate">
+                <div className="ai-gate-title">That's your free questions used.</div>
+                <p>
+                  The assistant is included with every plan. If you'd rather talk it through
+                  first, a 30-minute call costs nothing and you'll get a straight answer from
+                  a qualified accountant.
+                </p>
+                <div className="hero-btns">
+                  <a href={mailto("Question for FoundrBooks")} className="btn-primary btn-primary-blue">
+                    Book a free 30-min call →
+                  </a>
+                  <a href="#pricing" className="btn-ghost btn-ghost-light">See plans</a>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="input-row">
+                  <input
+                    className="chat-input"
+                    placeholder="Ask any tax or accounting question..."
+                    aria-label="Ask any tax or accounting question"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                  />
+                  <button className="send-btn" onClick={() => sendMessage()} disabled={loading} aria-label="Send message">↑</button>
+                </div>
+                <div className="ai-remaining">
+                  {FREE_QUESTIONS - askedCount} free question
+                  {FREE_QUESTIONS - askedCount === 1 ? "" : "s"} left · included with every plan
+                </div>
+              </>
+            )}
           </div>
         </section>
 

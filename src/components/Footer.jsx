@@ -32,6 +32,7 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-col-title">Services</div>
             <Link to="/about">About</Link>
+            <Link to="/ireland-or-uk">Ireland or UK? (tool)</Link>
             <a href="/#services">Startup accounting</a>
             <a href="/#pricing">Pricing</a>
             <a href="/#ai">AI tax assistant</a>

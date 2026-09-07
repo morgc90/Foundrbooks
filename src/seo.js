@@ -387,6 +387,33 @@ export const ROUTES = {
     priority: "0.8",
   },
 
+  "/ireland-or-uk": {
+    title: "Ireland or UK? Interactive Incorporation Decision Tool | FoundrBooks",
+    description:
+      "Answer five questions and get a reasoned view on whether to incorporate in Ireland or the UK — corporation tax, R&D credits, the EEA director requirement and tax residence. Free, runs in your browser.",
+    ogTitle: "Ireland or the UK? Work out where to incorporate",
+    ogDescription:
+      "A five-question tool for founders deciding where to set up: profits, R&D spend, EEA directors, and the tax residence trap most people miss.",
+    keywords:
+      "incorporate Ireland or UK, where to incorporate startup, Irish company vs UK company, EEA resident director requirement, company incorporation decision tool, Ireland UK corporation tax comparison",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "Ireland or UK? Incorporation decision tool",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Any",
+        url: `${SITE}/ireland-or-uk`,
+        description:
+          "Interactive tool weighing corporation tax, R&D credits, the EEA-resident director requirement and tax residence to suggest whether a founder should incorporate in Ireland or the United Kingdom.",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+        provider: { "@type": "Organization", name: "FoundrBooks", url: SITE },
+      },
+    ],
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+
   "/success": {
     title: "Subscription confirmed | FoundrBooks",
     description: "Your FoundrBooks subscription is confirmed.",

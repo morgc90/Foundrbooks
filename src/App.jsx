@@ -7,6 +7,7 @@ import SaasAccounting from "./pages/SaasAccounting";
 import RdTaxCredits from "./pages/RdTaxCredits";
 import VatDigitalServices from "./pages/VatDigitalServices";
 import IrelandVsUk from "./pages/IrelandVsUk";
+import IrelandOrUk from "./pages/IrelandOrUk";
 import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
 import "./App.css";
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/rd-tax-credits" element={<RdTaxCredits />} />
         <Route path="/vat-digital-services" element={<VatDigitalServices />} />
         <Route path="/ireland-vs-uk-company" element={<IrelandVsUk />} />
+        <Route path="/ireland-or-uk" element={<IrelandOrUk />} />
         <Route path="/success" element={<Success />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />

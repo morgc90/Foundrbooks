@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero";
 import Footer from "../components/Footer";
 import FaqSection from "../components/FaqSection";
@@ -77,6 +78,14 @@ export default function IrelandVsUk() {
       />
 
       <div className="main">
+        <section className="section">
+          <div className="callout">
+            <strong>Prefer to answer five questions instead?</strong>{" "}
+            <Link to="/ireland-or-uk">Use the interactive version</Link> — it weighs the same
+            factors against your own situation and takes about a minute.
+          </div>
+        </section>
+
         <section className="section">
           <div className="section-label">Side by side</div>
           <h2>The comparison.</h2>
