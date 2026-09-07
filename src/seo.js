@@ -16,6 +16,8 @@ const CAI_DIRECTORY =
 // Links the site to the Maps listing so Google treats them as one entity.
 const GBP_LISTING = "https://maps.google.com/?cid=18343503408184550027";
 
+const CONTACT_EMAIL = "cashinify@gmail.com";
+
 const ORGANISATION = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
@@ -23,15 +25,14 @@ const ORGANISATION = {
   description:
     "AI-powered accounting for UK and Irish founders and startups. Chartered accountant specialising in limited companies, SaaS businesses, and early-stage companies.",
   url: SITE,
-  email: "cashinify@gmail.com",
+  email: CONTACT_EMAIL,
   areaServed: ["GB", "IE"],
   priceRange: "€€",
   currenciesAccepted: "EUR",
   hasCredential: "ACA — member of Chartered Accountants Ireland",
   founder: { "@type": "Person", name: "Morgan Cashin" },
   memberOf: { "@type": "Organization", name: "Chartered Accountants Ireland" },
-  sameAs: [CAI_DIRECTORY],              // before
-  sameAs: [CAI_DIRECTORY, GBP_LISTING], // after
+  sameAs: [CAI_DIRECTORY, GBP_LISTING],
   knowsAbout: [
     "UK Corporation Tax",
     "Irish Corporation Tax",
@@ -213,6 +214,62 @@ export const INCORPORATION_FAQ = [
   },
 ];
 
+// The named professional behind the practice. Google's quality guidance leans
+// heavily on identifiable, verifiable authorship for finance topics, so the
+// About page carries a Person entity linked back to the organisation.
+const PERSON = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Morgan Cashin",
+  givenName: "Morgan",
+  familyName: "Cashin",
+  jobTitle: "Chartered Accountant (ACA)",
+  description:
+    "Chartered accountant and founder of FoundrBooks. Ten years in finance including five years at Grant Thornton Ireland on secondment into BlackRock, JPMorgan and State Street.",
+  url: `${SITE}/about`,
+  image: `${SITE}/morgan-cashin.jpg`,
+  email: CONTACT_EMAIL,
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "Professional certification",
+    name: "ACA — Chartered Accountant",
+    recognizedBy: { "@type": "Organization", name: "Chartered Accountants Ireland" },
+  },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "UCD Michael Smurfit Graduate Business School" },
+    { "@type": "CollegeOrUniversity", name: "Technological University Dublin" },
+  ],
+  worksFor: { "@type": "Organization", name: "FoundrBooks", url: SITE },
+  knowsAbout: [
+    "Startup Accounting",
+    "SaaS Revenue Recognition",
+    "R&D Tax Credits",
+    "Irish Corporation Tax",
+    "UK Corporation Tax",
+    "Company Incorporation Ireland",
+  ],
+  sameAs: [CAI_DIRECTORY, GBP_LISTING],
+};
+
+const ABOUT_FAQ = [
+  {
+    q: "Who runs FoundrBooks?",
+    a: "FoundrBooks is run by Morgan Cashin, a chartered accountant (ACA) qualified with Chartered Accountants Ireland and listed in its firms directory. He qualified in 2023 after five years at Grant Thornton Ireland, working largely on secondment into BlackRock, JPMorgan and State Street.",
+  },
+  {
+    q: "Is my work done by a qualified accountant or by AI?",
+    a: "Both, with a clear line between them. The AI assistant answers questions instantly, at any hour. Everything filed with Revenue, HMRC or the Companies Registration Office is prepared and reviewed by a qualified chartered accountant.",
+  },
+  {
+    q: "Can I verify the qualification?",
+    a: "Yes, and you should. Morgan Cashin is listed in the Chartered Accountants Ireland firms directory, which is publicly searchable and independent of this website.",
+  },
+  {
+    q: "Does FoundrBooks carry out audits?",
+    a: "No. FoundrBooks is a small practice providing accounting, tax and advisory services. If your company reaches a size where a statutory audit is required, you will need a registered audit firm.",
+  },
+];
+
 export const ROUTES = {
   "/": {
     title: "FoundrBooks — Accounting for UK & Irish Founders and Startups | ACA Qualified",
@@ -226,6 +283,20 @@ export const ROUTES = {
     jsonLd: [ORGANISATION, faqPage(HOME_FAQ)],
     changefreq: "weekly",
     priority: "1.0",
+  },
+
+  "/about": {
+    title: "About FoundrBooks — Morgan Cashin, Chartered Accountant (ACA)",
+    description:
+      "Meet the chartered accountant behind FoundrBooks. ACA qualified with Chartered Accountants Ireland, ten years in finance including Grant Thornton, BlackRock and JPMorgan. Accounting for founders in Ireland and the UK.",
+    ogTitle: "About FoundrBooks — Morgan Cashin, Chartered Accountant",
+    ogDescription:
+      "One chartered accountant, a decade of finance experience, and software built to remove the parts of the job that never needed a human.",
+    keywords:
+      "Morgan Cashin accountant, chartered accountant Ireland, ACA accountant Dublin, about FoundrBooks, accountant for founders Ireland, qualified accountant UK Ireland",
+    jsonLd: [PERSON, faqPage(ABOUT_FAQ)],
+    changefreq: "monthly",
+    priority: "0.8",
   },
 
   "/saas-accounting": {

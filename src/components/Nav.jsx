@@ -18,6 +18,7 @@ export default function Nav({ home = false }) {
         <a href={href("services")} className="nav-link">Services</a>
         <Link to="/saas-accounting" className="nav-link">SaaS accounting</Link>
         <a href={href("pricing")} className="nav-link">Pricing</a>
+        <Link to="/about" className="nav-link">About</Link>
         <a href={href("ai")} className="nav-link">AI assistant</a>
         <a href={mailto()} className="nav-cta">Free 30-min call</a>
       </div>

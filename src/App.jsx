@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Seo from "./components/Seo";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import SaasAccounting from "./pages/SaasAccounting";
 import RdTaxCredits from "./pages/RdTaxCredits";
 import VatDigitalServices from "./pages/VatDigitalServices";
@@ -16,6 +17,7 @@ export default function App() {
       <Seo />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/saas-accounting" element={<SaasAccounting />} />
         <Route path="/rd-tax-credits" element={<RdTaxCredits />} />
         <Route path="/vat-digital-services" element={<VatDigitalServices />} />
