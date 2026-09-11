@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import HeroVisual from "../components/HeroVisual";
-import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CREDENTIAL, mailto } from "../data";
+import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CREDENTIAL, mailto, whatsappLink, WA_SECTION_23 } from "../data";
 
 // Free questions before the assistant asks for a conversation instead.
 const FREE_QUESTIONS = 4;
@@ -326,7 +326,7 @@ export default function Home() {
                 </>
               );
               return s.to ? (
-                <Link key={i} to={s.to} className="service-card service-card-link">{inner}</Link>
+                <Link key={i} to={s.to} className={"service-card service-card-link" + (s.wide ? " service-card-wide" : "")}>{inner}</Link>
               ) : (
                 <div key={i} className="service-card">{inner}</div>
               );
@@ -394,6 +394,28 @@ export default function Home() {
                 </button>
               </div>
             ))}
+          </div>
+          <div className="oneoff-card">
+            <div className="oneoff-text">
+              <div className="oneoff-label">One-off · alongside any plan</div>
+              <div className="oneoff-name">FRS 102 Section 23 switchover</div>
+              <div className="oneoff-desc">
+                The 2026 revenue rules, done once: your contracts reviewed, the retained earnings adjustment
+                calculated and reconciled, the journal posted and the note for your accounts drafted.
+                Fixed fee per company, agreed before we start.
+              </div>
+            </div>
+            <div className="oneoff-actions">
+              <a
+                href={whatsappLink(WA_SECTION_23)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="price-cta oneoff-cta"
+              >
+                Get a quote on WhatsApp
+              </a>
+              <Link to="/frs-102-section-23" className="oneoff-more">What's involved →</Link>
+            </div>
           </div>
           <p className="pricing-note">All prices in EUR. Secure payment via Stripe. Cancel anytime with no fees.</p>
         </section>

@@ -12,6 +12,11 @@ export const CONTACT = {
 export const whatsappLink = (text = CONTACT.whatsappText) =>
   `${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 
+// Pre-typed message for every Section 23 entry point (page, pricing, services),
+// so these enquiries are recognisable in WhatsApp.
+export const WA_SECTION_23 =
+  "Hi FoundrBooks — I'd like to ask about the FRS 102 Section 23 revenue changes for my company.";
+
 export const mailto = (subject = CONTACT.callSubject) =>
   `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}`;
 
@@ -51,6 +56,15 @@ export const PLANS = [
 ];
 
 export const SERVICES = [
+  // Shown as a full-width banner across the top of the grid (`wide`), so seven
+  // services don't leave one card stranded on its own row.
+  {
+    icon: "🧮",
+    name: "FRS 102 switchover · new for 2026",
+    desc: "The revenue rules for Irish and UK companies changed from 1 January 2026. We work out the one-off adjustment, post it, and draft the note your accounts need.",
+    to: "/frs-102-section-23",
+    wide: true,
+  },
   { icon: "🚀", name: "Startup accounting", desc: "Bookkeeping from incorporation through to Series A and beyond." },
   { icon: "🔁", name: "SaaS finance", desc: "MRR tracking, IFRS 15 compliance, and investor-ready metrics.", to: "/saas-accounting" },
   { icon: "🔬", name: "R&D tax credits", desc: "35% in Ireland, merged RDEC in the UK — claims we can defend.", to: "/rd-tax-credits" },

@@ -5,11 +5,10 @@ import FaqSection from "../components/FaqSection";
 import GuideLinks from "../components/GuideLinks";
 import CtaSection from "../components/CtaSection";
 import DecisionTool from "../components/DecisionTool";
+import Section23Example from "../components/Section23Example";
 import { SECTION_23 } from "../decisionTools";
 import { FRS102_FAQ } from "../seo";
-
-const WA_TEXT =
-  "Hi FoundrBooks — I'd like to ask about the FRS 102 Section 23 revenue changes for my company.";
+import { WA_SECTION_23 as WA_TEXT } from "../data";
 const CALL_SUBJECT = "FRS 102 Section 23 — free 30-min call";
 
 // A real sequence, so the numbering carries meaning: each step feeds the next.
@@ -253,6 +252,13 @@ export default function Frs102Section23() {
               </p>
             </div>
           </div>
+          <h3 className="ex-heading" id="example">Try it with your own numbers.</h3>
+          <p className="section-sub">
+            Change the amount, your year end and when the contract started, and watch the adjustment and
+            the journal follow.
+          </p>
+          <Section23Example waText={WA_TEXT} />
+
           <div className="callout callout-warn">
             <strong>Don't leave the tax question to year end.</strong> Moving income between years moves
             profit between years, and the adjustment itself can have tax consequences. It's much easier to
