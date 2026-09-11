@@ -43,6 +43,7 @@ const ORGANISATION = {
     "Startup Accounting",
     "SaaS Finance",
     "SaaS Revenue Recognition",
+    "FRS 102 Section 23",
     "Limited Company Accounting",
     "R&D Tax Credits",
     "Company Incorporation Ireland",
@@ -217,6 +218,37 @@ export const INCORPORATION_FAQ = [
 // The named professional behind the practice. Google's quality guidance leans
 // heavily on identifiable, verifiable authorship for finance topics, so the
 // About page carries a Person entity linked back to the organisation.
+export const FRS102_FAQ = [
+  {
+    q: "What is FRS 102 Section 23?",
+    a: "Section 23 is the part of FRS 102 that sets out when a company recognises revenue from its customers. It has been replaced in full, for accounting periods beginning on or after 1 January 2026, by a five-step model adapted from IFRS 15: income is recognised as the company delivers what it promised, rather than when an invoice is raised.",
+  },
+  {
+    q: "When do the new Section 23 rules apply?",
+    a: "For accounting periods beginning on or after 1 January 2026. For a company with a 31 December year end, the first affected year is the one ending 31 December 2026. For other year ends it is the first year that starts during 2026, so a 31 March year end is first affected in the year to 31 March 2027. Early adoption is permitted.",
+  },
+  {
+    q: "Do the changes apply to small companies?",
+    a: "Yes. They apply to all companies preparing accounts under FRS 102, including small companies using Section 1A, in both Ireland and the UK.",
+  },
+  {
+    q: "What about micro-entities using FRS 105?",
+    a: "FRS 105 moves to a simplified version of the same five-step model for accounting periods beginning on or after 1 January 2026, with its own, simpler switchover rules. It is worth checking how those apply to the contracts you already have.",
+  },
+  {
+    q: "Will Section 23 change my tax bill?",
+    a: "It can change which year profit falls into, which can change when tax is paid, and the one-off switchover adjustment can have tax consequences of its own. The cash your business receives is unchanged. The tax position depends on your circumstances and is worth planning before your first affected year end.",
+  },
+  {
+    q: "What is the difference between the modified and full retrospective approaches?",
+    a: "Under the modified retrospective approach, last year's figures are left as they were and the cumulative effect of the change is recorded as an adjustment to retained earnings at the start of the first affected year, for contracts not completed at that date. Under the full retrospective approach, last year's figures are restated as if the new rules had always applied. Most smaller companies choose the modified approach.",
+  },
+  {
+    q: "We invoice after we deliver. Are we affected?",
+    a: "Probably very little. The new rules mostly move income that is paid for in advance of delivery. If you invoice after the work is done and little runs across your year end, your figures may barely change, though bundled sales and long projects are still worth checking.",
+  },
+];
+
 const PERSON = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -243,6 +275,7 @@ const PERSON = {
   knowsAbout: [
     "Startup Accounting",
     "SaaS Revenue Recognition",
+    "FRS 102 Section 23",
     "R&D Tax Credits",
     "Irish Corporation Tax",
     "UK Corporation Tax",
@@ -406,6 +439,40 @@ export const ROUTES = {
         url: `${SITE}/ireland-or-uk`,
         description:
           "Interactive tool weighing corporation tax, R&D credits, the EEA-resident director requirement and tax residence to suggest whether a founder should incorporate in Ireland or the United Kingdom.",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+        provider: { "@type": "Organization", name: "FoundrBooks", url: SITE },
+      },
+    ],
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+
+  "/frs-102-section-23": {
+    title: "FRS 102 Section 23 Explained: New Revenue Rules from 2026 | FoundrBooks",
+    description:
+      "The 2026 FRS 102 Section 23 revenue changes in plain English: the five-step model, who it affects in Ireland and the UK, the switchover, and a one-minute check.",
+    ogTitle: "FRS 102 Section 23 — the new revenue rules in plain English",
+    ogDescription:
+      "From 2026, Irish and UK companies count income when they deliver, not when they invoice. What changes, who's affected, and what the switchover involves.",
+    keywords:
+      "FRS 102 Section 23, FRS 102 revenue recognition 2026, FRS 102 amendments 2026, revenue from contracts with customers FRS 102, FRS 102 five-step model, FRS 102 transition modified retrospective, deferred income FRS 102, FRS 102 Section 1A revenue, FRS 105 revenue 2026, revenue recognition Ireland",
+    jsonLd: [
+      service(
+        "FRS 102 Section 23 Transition",
+        "Transition to the amended FRS 102 revenue recognition requirements",
+        "Fixed-fee transition to amended FRS 102 Section 23 for Irish and UK companies: contract review, old-versus-new revenue figures, the retained earnings adjustment reconciled to the trial balance, the transition journal, and a draft of the required disclosure.",
+        "/frs-102-section-23"
+      ),
+      faqPage(FRS102_FAQ),
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "Are you affected by FRS 102 Section 23?",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Any",
+        url: `${SITE}/frs-102-section-23#checker`,
+        description:
+          "A six-question check of whether the 2026 FRS 102 Section 23 revenue changes are likely to move a company's figures, and when its first affected year begins.",
         offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
         provider: { "@type": "Organization", name: "FoundrBooks", url: SITE },
       },

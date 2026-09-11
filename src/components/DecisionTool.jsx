@@ -48,6 +48,12 @@ export default function DecisionTool({ config }) {
   const winner = isClose ? "tie" : ranked[0]?.[0];
   const result = results[winner] || results.tie;
 
+  // A note can silence others that stop applying once it's raised — "this
+  // doesn't affect you" followed by "here's what changes for you" would
+  // contradict itself. Declared in the config as `suppresses: [flags]`.
+  const silenced = new Set(raised.flatMap((f) => notes[f]?.suppresses || []));
+  const shown = raised.filter((f) => !silenced.has(f));
+
   const progress = Math.round((Math.min(step, questions.length) / questions.length) * 100);
 
   // --- results -------------------------------------------------------------
@@ -60,7 +66,7 @@ export default function DecisionTool({ config }) {
           <p>{result.body}</p>
         </div>
 
-        {raised.map((f) => {
+        {shown.map((f) => {
           const n = notes[f];
           if (!n) return null;
           return (
@@ -83,7 +89,7 @@ export default function DecisionTool({ config }) {
               Book a free 30-min call →
             </a>
             <a
-              href={whatsappLink()}
+              href={whatsappLink(cta.whatsappText)}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost btn-ghost-light"

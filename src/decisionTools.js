@@ -149,3 +149,170 @@ export const IRELAND_VS_UK = {
 
   related: { to: "/ireland-vs-uk-company", label: "Read the full comparison guide" },
 };
+
+// ---------------------------------------------------------------------------
+// FRS 102 Section 23 — "Are you affected?"
+//
+// Embedded on /frs-102-section-23 rather than given its own route: the checker
+// only makes sense alongside the explanation of what changed.
+//
+// IFRS carries an overwhelming weight on purpose. An IFRS reporter is already
+// on IFRS 15 and is not affected however the other questions are answered, and
+// the scoring model has no override — so the weight is the override.
+//
+// REVIEWED: September 2026 against the FRC's Periodic Review 2024 amendments.
+export const SECTION_23 = {
+  slug: "/frs-102-section-23",
+  badge: "6 questions · about a minute",
+  title: "Are you affected by FRS 102 Section 23?",
+  outcomes: {
+    significant: "Likely to change your numbers",
+    minor: "Probably little change",
+  },
+  closeMargin: 3,
+
+  questions: [
+    {
+      id: "framework",
+      q: "Which accounting rules are your company's accounts prepared under?",
+      help:
+        "It's stated near the start of the notes to your last set of accounts. Most small and medium private companies in Ireland and the UK use FRS 102, often the Section 1A small-company version.",
+      options: [
+        { label: "FRS 102 (including Section 1A)", weights: { significant: 1 } },
+        { label: "FRS 105 — the micro-entity rules", weights: { minor: 2 }, flags: ["frs105"] },
+        { label: "IFRS", weights: { minor: 20 }, flags: ["ifrs"] },
+        { label: "Not sure", weights: {}, flags: ["framework_unsure"] },
+      ],
+    },
+    {
+      id: "yearend",
+      q: "When does your financial year end?",
+      options: [
+        { label: "31 December", weights: {}, flags: ["ye_december"] },
+        { label: "Another date", weights: {}, flags: ["ye_other"] },
+      ],
+    },
+    {
+      id: "prepaid",
+      q: "Do customers ever pay before you've finished delivering?",
+      help:
+        "Annual subscriptions paid up front, deposits, retainers, or support and maintenance billed in advance.",
+      options: [
+        { label: "Yes, regularly", weights: { significant: 3 } },
+        { label: "Occasionally", weights: { significant: 1, minor: 1 } },
+        { label: "No — we invoice after the work is done", weights: { minor: 3 } },
+      ],
+    },
+    {
+      id: "span",
+      q: "Do any contracts or subscriptions run across your year end?",
+      options: [
+        { label: "Yes, most of them", weights: { significant: 3 } },
+        { label: "A few", weights: { significant: 1 } },
+        { label: "No — everything is delivered within the year", weights: { minor: 3 } },
+      ],
+    },
+    {
+      id: "bundle",
+      q: "Do you ever sell two or more things together for one price?",
+      help:
+        "For example setup plus a subscription, equipment plus installation, or a product plus a support contract.",
+      options: [
+        { label: "Yes", weights: { significant: 2 }, flags: ["bundles"] },
+        { label: "No", weights: {} },
+      ],
+    },
+    {
+      id: "booking",
+      q: "How is that income booked at the moment?",
+      help: "If you don't know, your bookkeeper will.",
+      options: [
+        { label: "When we send the invoice", weights: { significant: 2 }, flags: ["invoice_basis"] },
+        { label: "Spread over the period we deliver it", weights: { minor: 2 }, flags: ["already_spread"] },
+        { label: "Not sure", weights: {} },
+      ],
+    },
+  ],
+
+  notes: {
+    ifrs: {
+      tone: "plain",
+      title: "You're already on the international version.",
+      body:
+        "Section 23 is FRS 102's adaptation of IFRS 15, which IFRS reporters already apply. This change doesn't affect you.",
+      // Nothing else in the result applies to an IFRS reporter.
+      suppresses: ["ye_december", "ye_other", "bundles", "invoice_basis", "already_spread"],
+    },
+    frs105: {
+      tone: "plain",
+      title: "The micro-entity rules are changing too.",
+      body:
+        "FRS 105 moves to a simplified version of the same model for accounting periods beginning on or after 1 January 2026, with its own, simpler switchover rules. Worth confirming how they apply to the contracts you already have.",
+    },
+    framework_unsure: {
+      tone: "plain",
+      title: "Check which rules your accounts use first.",
+      body:
+        "It's named near the start of the notes to your last set of accounts. Most Irish and UK private companies use FRS 102 — and if that's you, everything on this page applies.",
+    },
+    ye_december: {
+      tone: "plain",
+      title: "Your first affected year ends 31 December 2026.",
+      body:
+        "The accounts for it are prepared in 2027, but the figures are being set by the contracts running now.",
+    },
+    ye_other: {
+      tone: "plain",
+      title: "Your first affected year is the first one starting in 2026.",
+      body:
+        "The new rules apply to accounting periods beginning on or after 1 January 2026 — so for a 31 March year end, the first affected year is the one to 31 March 2027.",
+    },
+    bundles: {
+      tone: "warn",
+      title: "Bundles are where it gets technical.",
+      body:
+        "When two things are sold for one price, the new rules share the price out by what each would sell for on its own, not by how the invoice happened to split it. That can move income between years even when nothing else changes.",
+    },
+    invoice_basis: {
+      tone: "warn",
+      title: "Booking income on invoice is the habit that changes most.",
+      body:
+        "Under the new rules, money paid in advance is held as deferred income and released as you deliver. At the switchover that usually means a one-off reduction in retained earnings, balanced by higher income in the year that follows.",
+    },
+    already_spread: {
+      tone: "plain",
+      title: "You may be most of the way there already.",
+      body:
+        "Spreading income over the period you deliver it is close to what Section 23 expects, so the switchover may be small. Bundles and mid-contract changes are where it can still differ.",
+    },
+  },
+
+  results: {
+    significant: {
+      headline: "Section 23 is likely to change your numbers.",
+      body:
+        "Your answers describe the kind of business where the new rules move income from one year into the next. Expect a one-off adjustment at the start of your first affected year, and income landing later than it does now. The cash doesn't change; the timing of profit — and potentially of tax — does.",
+    },
+    minor: {
+      headline: "Section 23 probably won't change much for you.",
+      body:
+        "Where customers pay after you've delivered and little runs across your year end, the new rules mostly confirm what you do already. Worth a quick look at your next year end — particularly if you ever take deposits or sell bundles — but no reason to spend money on it now.",
+    },
+    tie: {
+      headline: "It could go either way.",
+      body:
+        "Mixed answers usually mean the effect depends on a handful of specific contracts. A short look at the terms of your largest customers normally settles it.",
+    },
+  },
+
+  disclaimer:
+    "This is a guide, not advice. It weighs common patterns but can't see your contracts, and a single large or unusual contract can change the answer. Nothing here creates a client relationship.",
+
+  cta: {
+    heading: "Want us to check properly?",
+    sub: "Thirty minutes, no charge. Send your largest customer contracts and last year's accounts and we'll tell you whether it's worth doing anything.",
+    subject: "FRS 102 Section 23 — free 30-min call",
+    whatsappText:
+      "Hi FoundrBooks — I've just done the Section 23 check on your site and I'd like to talk it through.",
+  },
+};

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { mailto, whatsappLink } from "../data";
 
-export default function CtaSection({ heading, sub, subject, disclaimer }) {
+export default function CtaSection({ heading, sub, subject, disclaimer, waText }) {
   return (
     <section className="section cta-section">
       <h2>{heading}</h2>
@@ -11,7 +11,7 @@ export default function CtaSection({ heading, sub, subject, disclaimer }) {
           Book a free 30-min call →
         </a>
         <a
-          href={whatsappLink()}
+          href={whatsappLink(waText)}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-ghost btn-ghost-light"

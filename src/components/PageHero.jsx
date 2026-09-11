@@ -4,7 +4,7 @@ import { mailto, whatsappLink } from "../data";
 /**
  * Dark page header shared by the guide pages.
  */
-export default function PageHero({ badge, title, sub, ctaSubject }) {
+export default function PageHero({ badge, title, sub, ctaSubject, waText }) {
   return (
     <div className="page-head">
       <Nav />
@@ -20,7 +20,7 @@ export default function PageHero({ badge, title, sub, ctaSubject }) {
         <div className="hero-btns">
           <a href={mailto(ctaSubject)} className="btn-primary">Book a free 30-min call</a>
           <a
-            href={whatsappLink()}
+            href={whatsappLink(waText)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-ghost"

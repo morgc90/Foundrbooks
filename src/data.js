@@ -81,4 +81,5 @@ export const GUIDES = [
   { to: "/rd-tax-credits", name: "R&D tax credits", desc: "What qualifies, what it's worth, and how to claim." },
   { to: "/vat-digital-services", name: "VAT on digital services", desc: "OSS, reverse charge and cross-border thresholds." },
   { to: "/ireland-vs-uk-company", name: "Ireland or UK?", desc: "Where to incorporate and what it costs in tax." },
+  { to: "/frs-102-section-23", name: "FRS 102 Section 23", desc: "The 2026 revenue rules in plain English — and whether they affect you." },
 ];
