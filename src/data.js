@@ -43,6 +43,13 @@ export const XERO = {
   url: "https://www.xero.com/ie/",
 };
 
+// Google Business Profile. The CID link is permanent, unlike the search URLs
+// the browser produces, which carry session parameters and expire.
+export const GOOGLE_PROFILE = {
+  url: "https://maps.google.com/?cid=18343503408184550027",
+  label: "Find us on Google",
+};
+
 // Independent verification of the practice's credentials.
 export const CREDENTIAL = {
   name: "Morgan Cashin",

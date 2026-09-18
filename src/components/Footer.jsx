@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CONTACT, CREDENTIAL, GUIDES, XERO, whatsappLink } from "../data";
+import { CONTACT, CREDENTIAL, GOOGLE_PROFILE, GUIDES, XERO, whatsappLink } from "../data";
 import XeroBadge from "./XeroBadge";
 
 export default function Footer() {
@@ -48,6 +48,9 @@ export default function Footer() {
               Chat on WhatsApp
             </a>
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+            <a href={GOOGLE_PROFILE.url} target="_blank" rel="noopener noreferrer">
+              {GOOGLE_PROFILE.label} ↗
+            </a>
             <Link to="/">foundrbooks.com</Link>
           </div>
         </div>

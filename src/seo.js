@@ -6,6 +6,8 @@
 // Tax figures verified against revenue.ie, cro.ie and gov.uk in August 2026.
 // Re-check after each Budget / Finance Act before publishing changes.
 
+import { GOOGLE_PROFILE } from "./data";
+
 export const SITE = "https://foundrbooks.com";
 export const OG_IMAGE = `${SITE}/og-image.png`;
 
@@ -14,7 +16,7 @@ const CAI_DIRECTORY =
 // Google Business Profile entity for FoundrBooks.
 // Feature ID 0x65d074cc8b461387:0xfe9137296501e28b -> CID 18343503408184550027.
 // Links the site to the Maps listing so Google treats them as one entity.
-const GBP_LISTING = "https://maps.google.com/?cid=18343503408184550027";
+const GBP_LISTING = GOOGLE_PROFILE.url;
 
 const CONTACT_EMAIL = "cashinify@gmail.com";
 
