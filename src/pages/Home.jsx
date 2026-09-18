@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import HeroVisual from "../components/HeroVisual";
+import XeroBadge from "../components/XeroBadge";
 import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CREDENTIAL, mailto, whatsappLink, WA_SECTION_23 } from "../data";
 
 // Free questions before the assistant asks for a conversation instead.
@@ -180,6 +181,7 @@ export default function Home() {
               </div>
               <div className="trust-row">
                 <span>✓ Chartered accountant</span>
+                <span>✓ Xero certified</span>
                 <span>✓ 24h response</span>
                 <span>✓ UK &amp; Ireland</span>
                 <span>✓ GDPR compliant</span>
@@ -192,6 +194,7 @@ export default function Home() {
               >
                 {CREDENTIAL.name} — verify with {CREDENTIAL.body} ↗
               </a>
+              <XeroBadge className="xero-badge-hero" />
             </div>
             <div className="hero-image-wrap">
               <HeroVisual />

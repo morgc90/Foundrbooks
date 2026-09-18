@@ -2,7 +2,8 @@ import PageHero from "../components/PageHero";
 import Footer from "../components/Footer";
 import GuideLinks from "../components/GuideLinks";
 import CtaSection from "../components/CtaSection";
-import { CREDENTIAL } from "../data";
+import { CREDENTIAL, XERO } from "../data";
+import XeroBadge from "../components/XeroBadge";
 
 const TRACK_RECORD = [
   {
@@ -84,7 +85,8 @@ export default function About() {
                 {CREDENTIAL.body} firms directory
               </a>
               , and I would encourage you to check that for any accountant you are thinking
-              of trusting with your company's numbers.
+              of trusting with your company's numbers. I am also a {XERO.partnerLabel} and {XERO.short}, at Associate and{" "}
+              Professional level, since {XERO.since}.
             </p>
           </div>
 

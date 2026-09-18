@@ -641,3 +641,12 @@ h1 em { font-style: normal; color: #5ba3f5; }
   .ex .cmp-table thead th { font-size: 10px; }
   .ex .cmp-table tbody th { width: auto; }
 }
+
+.footer-credential-plain { display: block; border: 0; cursor: default; margin-top: 6px; }
+
+/* ---- Xero partner badge ---- */
+.xero-badge { display: inline-block; line-height: 0; }
+.xero-badge img { display: block; height: 56px; width: auto; }
+.xero-badge-hero { margin-top: 14px; }
+.xero-badge-footer { margin-top: 12px; }
+@media (max-width: 600px) { .xero-badge img { height: 44px; } }

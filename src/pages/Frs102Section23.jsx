@@ -271,6 +271,7 @@ export default function Frs102Section23() {
           <h2>Your Section 23 switchover, for a fixed fee.</h2>
           <p className="section-sub">
             A fixed fee per company, agreed before we start. No hourly billing and no surprise invoices.
+            Xero certified, Associate and Professional.
           </p>
           <ul className="checklist">
             {DELIVERABLES.map((item, i) => (

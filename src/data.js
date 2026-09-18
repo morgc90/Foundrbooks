@@ -20,6 +20,29 @@ export const WA_SECTION_23 =
 export const mailto = (subject = CONTACT.callSubject) =>
   `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}`;
 
+// Xero credentials. Wording matches Xero's own assessment results exactly.
+// Partner status has been applied for but not yet confirmed by Xero, so it is
+// deliberately not claimed anywhere on the site: set `partner` to true (and add
+// the official badge from Xero Central) only once the confirmation arrives.
+export const XERO = {
+  short: "Xero certified",
+  long: "Xero certified — Associate and Professional",
+  // L1 and L2 of Xero's certification pathway, worded as Xero words them.
+  certifications: ["Xero associate certified", "Xero professional certified"],
+  since: "September 2026",
+  partner: true,
+  partnerLabel: "Xero Partner",
+  // Xero's own L2 Certified Professional badge (capsule version), supplied by
+  // Morgan. Transparent background, so it sits straight on the dark hero and
+  // footer. Stored at 3x the display height to stay sharp on phone screens,
+  // and never shown below Xero's 40px minimum.
+  badge: "/xero-l2-certified.png",
+  badgeAlt: "Xero L2 Certified Professional",
+  badgeHeight: 56,
+  badgeWidth: 207,
+  url: "https://www.xero.com/ie/",
+};
+
 // Independent verification of the practice's credentials.
 export const CREDENTIAL = {
   name: "Morgan Cashin",
