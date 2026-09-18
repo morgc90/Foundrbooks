@@ -43,6 +43,28 @@ export const XERO = {
   url: "https://www.xero.com/ie/",
 };
 
+// A2X certification — the tool that turns Shopify and Amazon payouts into
+// bookkeeping entries. Certified 18 September 2026, serial cert_g1863g62.
+export const A2X = {
+  short: "A2X certified",
+  long: "A2X Certification for Accountants and Bookkeepers",
+  since: "September 2026",
+  // The certificate itself, so the claim can be checked rather than taken on trust.
+  certificate: "/a2x-certificate.png",
+  serial: "cert_g1863g62",
+  badge: "/a2x-certified-badge.png",
+  badgeHeight: 56,
+  badgeWidth: 82,
+  url: "https://www.a2xaccounting.com/",
+};
+
+// Every badge shown on the site, in one place. Each is the issuer's own asset,
+// transparent, shown at 56px tall (44px on phones) and never recoloured.
+export const BADGES = [
+  { key: "xero", src: XERO.badge, alt: XERO.badgeAlt, href: XERO.url, w: XERO.badgeWidth, h: XERO.badgeHeight },
+  { key: "a2x", src: A2X.badge, alt: `${A2X.short} — ${A2X.long}`, href: A2X.url, w: A2X.badgeWidth, h: A2X.badgeHeight },
+];
+
 // Google Business Profile. The CID link is permanent, unlike the search URLs
 // the browser produces, which carry session parameters and expire.
 export const GOOGLE_PROFILE = {
@@ -97,8 +119,10 @@ export const SERVICES = [
   },
   { icon: "🚀", name: "Startup accounting", desc: "Bookkeeping from incorporation through to Series A and beyond." },
   { icon: "🔁", name: "SaaS finance", desc: "MRR tracking, IFRS 15 compliance, and investor-ready metrics.", to: "/saas-accounting" },
+  { icon: "🛒", name: "E-commerce & Shopify", desc: "A2X certified: payouts split into sales, fees, refunds and VAT that reconcile." },
   { icon: "🔬", name: "R&D tax credits", desc: "35% in Ireland, merged RDEC in the UK — claims we can defend.", to: "/rd-tax-credits" },
   { icon: "🧾", name: "VAT & cross-border", desc: "Registration, OSS, and digital services VAT across the UK and EU.", to: "/vat-digital-services" },
+  { icon: "👥", name: "Payroll", desc: "Monthly payroll in Ireland and the UK, registrations through to year-end filings." },
   { icon: "🏛️", name: "Ireland or UK?", desc: "Where to incorporate, and what each choice costs you in tax.", to: "/ireland-vs-uk-company" },
   { icon: "✨", name: "AI tax assistant", desc: "24/7 instant answers backed by a qualified accountant." },
 ];

@@ -89,7 +89,7 @@ h1 em { font-style: normal; color: #5ba3f5; }
 .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* ---- SERVICES ---- */
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .service-card { padding: 20px; border-radius: 18px; background: #fff; transition: transform 0.2s; }
 .service-card:hover { transform: translateY(-2px); }
 .service-icon { font-size: 22px; margin-bottom: 12px; }
@@ -645,13 +645,24 @@ h1 em { font-style: normal; color: #5ba3f5; }
 .footer-credential-plain { display: block; border: 0; cursor: default; margin-top: 6px; }
 
 /* ---- Xero partner badge ---- */
-.xero-badge { display: inline-block; line-height: 0; }
-.xero-badge img { display: block; height: 56px; width: auto; }
-.xero-badge-hero { margin-top: 14px; }
-.xero-badge-footer { margin-top: 12px; }
-@media (max-width: 600px) { .xero-badge img { height: 44px; } }
+.badge-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; line-height: 0; }
+.badge-row img { display: block; height: 56px; width: auto; }
+.badge-row-hero { margin-top: 14px; }
+.badge-row-footer { margin-top: 12px; }
+.about-intro .badge-row { margin-top: 16px; }
+@media (max-width: 600px) { .badge-row img { height: 44px; } .badge-row { gap: 12px; } }
 
 /* ---- About: client names ---- */
 .client-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .client-chip { background: #fff; border-radius: 980px; padding: 9px 18px; font-size: 13.5px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.2px; }
-.about-intro .xero-badge { margin-top: 16px; }
+
+/* Services grid: eight cards, kept to even rows at every width. */
+@media (max-width: 1000px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .services-grid { grid-template-columns: 1fr; } }
+
+/* About: the A2X certificate, shown so the claim can be checked. */
+.cert-row { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; margin-top: 14px; }
+.cert-figure { background: #fff; border-radius: 14px; padding: 10px; margin: 0; display: inline-block; }
+.cert-figure img { display: block; width: 260px; height: auto; border-radius: 8px; }
+.cert-figure figcaption { font-size: 11.5px; color: #6e6e73; padding: 8px 4px 2px; max-width: 260px; line-height: 1.5; }

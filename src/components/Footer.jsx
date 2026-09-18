@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { CONTACT, CREDENTIAL, GOOGLE_PROFILE, GUIDES, XERO, whatsappLink } from "../data";
-import XeroBadge from "./XeroBadge";
+import { A2X, CONTACT, CREDENTIAL, GOOGLE_PROFILE, GUIDES, XERO, whatsappLink } from "../data";
+import Badges from "./Badges";
 
 export default function Footer() {
   return (
@@ -23,9 +23,9 @@ export default function Footer() {
             {CREDENTIAL.name} · listed with {CREDENTIAL.body} ↗
           </a>
           <div className="footer-credential footer-credential-plain">
-            {XERO.partnerLabel} · {XERO.long}
+            {XERO.partnerLabel} · {XERO.long} · {A2X.short}
           </div>
-          <XeroBadge className="xero-badge-footer" />
+          <Badges className="badge-row-footer" />
         </div>
         <div className="footer-links">
           <div className="footer-col">

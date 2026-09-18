@@ -2,8 +2,8 @@ import PageHero from "../components/PageHero";
 import Footer from "../components/Footer";
 import GuideLinks from "../components/GuideLinks";
 import CtaSection from "../components/CtaSection";
-import { CREDENTIAL, GOOGLE_PROFILE, XERO } from "../data";
-import XeroBadge from "../components/XeroBadge";
+import { A2X, CREDENTIAL, GOOGLE_PROFILE, XERO } from "../data";
+import Badges from "../components/Badges";
 
 // Clients are described, not named: a practice shouldn't put client names on a
 // public page without their agreement, and the description carries the point
@@ -20,7 +20,7 @@ const SECTORS = [
   {
     title: "E-commerce and Shopify brands",
     body:
-      "Revenue arriving through several channels at once, each reporting it differently. Processor fees netted off before the money lands, refunds and chargebacks landing in a later month than the sale, stock sitting in more than one country. The gross number on the dashboard and the number that belongs in the accounts are rarely the same, and the gap is where the tax goes wrong.",
+      "Revenue arriving through several channels at once, each reporting it differently. Processor fees netted off before the money lands, refunds and chargebacks landing in a later month than the sale, stock sitting in more than one country. The gross number on the dashboard and the number that belongs in the accounts are rarely the same, and the gap is where the tax goes wrong. This is what the A2X certification is for.",
   },
   {
     title: "Software and subscriptions",
@@ -107,6 +107,35 @@ export default function About() {
               </div>
             ))}
           </div>
+
+          <div className="callout">
+            <strong>What {A2X.short} means if you sell online.</strong> Shopify, Amazon and
+            Etsy do not pay you per order. They send a lump sum every few days, already net of
+            their fees, refunds, chargebacks and any tax they collected on your behalf. Dropped
+            into the accounts as one deposit, that number tells you nothing: your revenue is
+            understated, your fees are invisible, and your VAT has nowhere sensible to sit.
+            A2X splits every payout back into what it was actually made of and posts it so it
+            reconciles to the penny against your bank. Certified since {A2X.since}, which means
+            sales, fees, refunds and VAT land in the right accounts and the right months — so
+            the margin you are looking at is the real one, and the VAT return is not guesswork.
+          </div>
+
+          <div className="cert-row">
+            <figure className="cert-figure">
+              <a href={A2X.certificate} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={A2X.certificate}
+                  width="260"
+                  height="212"
+                  loading="lazy"
+                  alt={`${A2X.long}, awarded to Morgan Cashin, ${A2X.since}`}
+                />
+              </a>
+              <figcaption>
+                {A2X.long} — {A2X.since}, serial {A2X.serial}. Click to view in full.
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
         <section className="section">
@@ -164,14 +193,14 @@ export default function About() {
                 </a>
                 , and I would encourage you to check that for any accountant you are thinking of
                 trusting with your company's numbers. I am also a {XERO.partnerLabel} and{" "}
-                {XERO.short}, at Associate and Professional level, since {XERO.since}, and the
-                practice has a{" "}
+                {XERO.short}, at Associate and Professional level, since {XERO.since},
+                {" "}and hold the {A2X.long}. The practice has a{" "}
                 <a href={GOOGLE_PROFILE.url} target="_blank" rel="noopener noreferrer">
                   Google business profile
                 </a>{" "}
                 if you would rather start there.
               </p>
-              <XeroBadge />
+              <Badges />
             </div>
 
             <figure className="about-portrait">
