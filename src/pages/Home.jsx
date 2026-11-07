@@ -2,16 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import HeroVisual from "../components/HeroVisual";
 import Badges from "../components/Badges";
-import { PLANS, SERVICES, REVIEWS, QUICK_PROMPTS, CREDENTIAL, mailto, whatsappLink, WA_SECTION_23 } from "../data";
+import { PLANS, QUICK_PROMPTS, CREDENTIAL, GOOGLE_PROFILE, XERO, A2X, mailto, whatsappLink, WA_SECTION_23 } from "../data";
 
 // Free questions before the assistant asks for a conversation instead.
 const FREE_QUESTIONS = 4;
 const ASK_KEY = "fb_ai_asked";
 
 export default function Home() {
-  const canvasRef = useRef(null);
   const chatEndRef = useRef(null);
   const [messages, setMessages] = useState([
     {
@@ -23,82 +21,6 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [checkingOut, setCheckingOut] = useState("");
-
-  // Animated canvas background
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !canvas.parentElement) return;
-    const ctx = canvas.getContext("2d");
-    let animId;
-    let particles = [];
-    let W, H;
-
-    function resize() {
-      W = canvas.width = canvas.parentElement.offsetWidth;
-      H = canvas.height = canvas.parentElement.offsetHeight;
-    }
-
-    function makeParticle() {
-      return {
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: Math.random() * 1.2 + 0.3,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        alpha: Math.random() * 0.5 + 0.1,
-      };
-    }
-
-    function init() {
-      particles = Array.from({ length: 70 }, makeParticle);
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = "#04091a";
-      ctx.fillRect(0, 0, W, H);
-
-      ctx.strokeStyle = "rgba(91,163,245,0.035)";
-      ctx.lineWidth = 0.5;
-      for (let x = 0; x < W; x += 52) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
-      for (let y = 0; y < H; y += 52) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 85) {
-            ctx.strokeStyle = `rgba(91,163,245,${0.1 * (1 - d / 85)})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      for (const p of particles) {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(91,163,245,${p.alpha})`;
-        ctx.fill();
-      }
-      animId = requestAnimationFrame(draw);
-    }
-
-    const onResize = () => { resize(); init(); };
-    resize(); init(); draw();
-    window.addEventListener("resize", onResize);
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
 
   // Free questions before the assistant asks for a conversation. Deliberately a
   // soft cap: it is a nudge to book a call, not a security control — the server
@@ -163,91 +85,123 @@ export default function Home() {
 
   return (
     <div className="app">
+      <Nav home />
+
       {/* HERO */}
-      <div className="hero-wrap">
-        <canvas ref={canvasRef} className="hero-canvas" aria-hidden="true" />
-        <Nav home />
-        <div className="hero-content">
-          <div className="hero-inner">
-            <div className="hero-text">
-              <div className="hero-badge"><span className="badge-dot" />AI-powered · ACA Qualified</div>
-              <h1>Accounting built for<br /><em>founders.</em></h1>
-              <p className="hero-sub">
-                Your AI tax assistant, real-time bookkeeping, and an ACA-qualified accountant — all in one place.
-              </p>
-              <div className="hero-btns">
-                <a href="#pricing" className="btn-primary">See pricing</a>
-                <a href="#ai" className="btn-ghost">Try AI assistant →</a>
-              </div>
-              <div className="trust-row">
-                <span>✓ Chartered accountant</span>
-                <span>✓ Xero certified</span>
-                <span>✓ A2X certified</span>
-                <span>✓ 24h response</span>
-                <span>✓ UK &amp; Ireland</span>
-                <span>✓ GDPR compliant</span>
-              </div>
-              <a
-                className="hero-credential"
-                href={CREDENTIAL.directoryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {CREDENTIAL.name} — verify with {CREDENTIAL.body} ↗
-              </a>
-              <Badges className="badge-row-hero" />
-            </div>
-            <div className="hero-image-wrap">
-              <HeroVisual />
-            </div>
+      <section className="h-hero">
+        <div>
+          <div className="hero-badge"><span className="badge-dot" />ACA chartered accountant · UK &amp; Ireland</div>
+          <h1>Accounting for people who'd rather be <span className="hl">building.</span></h1>
+          <p className="h-hero-sub">
+            A chartered accountant, real-time bookkeeping and an AI tax assistant that answers at 2am.
+            For founders, SaaS, Shopify stores and the self-employed.
+          </p>
+          <div className="hero-btns">
+            <a href={mailto()} className="btn-primary">Book a free 30-min call</a>
+            <a href="#ai" className="btn-ghost">Ask the AI a tax question →</a>
+          </div>
+          <div className="h-trust">
+            <span>{XERO.short}</span>
+            <span>{A2X.short}</span>
+            <span>24h response</span>
+            <span>GDPR compliant</span>
+            <a href={CREDENTIAL.directoryUrl} target="_blank" rel="noopener noreferrer">
+              Verify {CREDENTIAL.name} with {CREDENTIAL.body} ↗
+            </a>
           </div>
         </div>
-        <div className="float-cards">
-          {[
-            { label: "Tax saved", val: "€8,240", sub: "vs. doing it yourself" },
-            { label: "AI response", val: "<3s", sub: "instant answers" },
-            { label: "Clients served", val: "200+", sub: "founders & freelancers" },
-          ].map((c, i) => (
-            <div key={i} className={`fcard fcard-${i}`}>
-              <div className="fcard-label">{c.label}</div>
-              <div className="fcard-val">{c.val}</div>
-              <div className="fcard-sub">{c.sub}</div>
+        <div className="h-card" aria-label="Example of a month handled by FoundrBooks">
+          <div className="h-card-top">
+            <span className="h-card-title">Your month, sorted</span>
+            <span className="h-tag">Example</span>
+          </div>
+          <div className="h-rows">
+            {[["Bank feeds reconciled", "Today"], ["VAT return filed", "Q3"], ["Shopify payouts split", "Weekly"]].map(([l, m]) => (
+              <div key={l} className="h-row">
+                <span className="h-tick"><Tick /></span>
+                <span className="h-row-label">{l}</span>
+                <span className="h-row-meta">{m}</span>
+              </div>
+            ))}
+            <div className="h-row h-row-pending">
+              <span className="h-ring" />
+              <span className="h-row-label">Corporation tax</span>
+              <span className="h-row-meta h-row-meta-hot">Handled</span>
             </div>
+          </div>
+          <p className="h-card-foot">You: shipping product. Us: everything above.</p>
+        </div>
+      </section>
+
+      {/* MARQUEE */}
+      <div className="h-marquee" aria-hidden="true">
+        <div className="h-marquee-inner">
+          {[...MARQUEE, ...MARQUEE].map((t, i) => (
+            <span key={i}>{t} <span className="h-marquee-star">✶</span></span>
           ))}
         </div>
       </div>
 
-      {/* TICKER */}
-      <div className="ticker">
-        <div className="ticker-inner">
-          {[
-            "Self assessment filed on time",
-            "VAT registration end-to-end",
-            "SaaS MRR tracking built in",
-            "Shopify reconciliation automated",
-            "Corporation tax optimised",
-            "AI assistant 24/7",
-          ]
-            .concat([
-              "Self assessment filed on time",
-              "VAT registration end-to-end",
-              "SaaS MRR tracking built in",
-              "Shopify reconciliation automated",
-              "Corporation tax optimised",
-              "AI assistant 24/7",
-            ])
-            .map((t, i) => (
-              <span key={i} className="ticker-item">{t}</span>
-            ))}
-        </div>
+      <div className="main">
+        {/* SERVICES */}
+        <section className="h-section" id="services">
+          <div className="h-head">
+            <h2 className="h2">Everything boring.<br />Done properly.</h2>
+            <p className="h-lede">Specialist accounting for online founders, SaaS businesses, Shopify stores and the self-employed.</p>
+          </div>
+          <Link to="/frs-102-section-23" className="h-feature">
+            <span className="h-feature-l">
+              <span className="h-chip-ink">NEW FOR 2026</span>
+              <span className="h-feature-name">FRS 102 Section 23 switchover</span>
+              <span>The one-off adjustment, the journal and the accounts note. Fixed fee.</span>
+            </span>
+            <span className="h-feature-more">What's involved →</span>
+          </Link>
+          <div className="h-services">
+            {SERVICE_CARDS.map((s, i) => {
+              const inner = (
+                <>
+                  <span className="h-svc-num">{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{s.name}</h3>
+                  <p>{s.desc}</p>
+                  {s.more && <span className="h-svc-more">{s.more} →</span>}
+                </>
+              );
+              const cls = "h-svc" + (s.dark ? " h-svc-dark" : "");
+              if (s.to) return <Link key={s.name} to={s.to} className={cls}>{inner}</Link>;
+              if (s.href) return <a key={s.name} href={s.href} className={cls}>{inner}</a>;
+              return <div key={s.name} className={cls}>{inner}</div>;
+            })}
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section className="h-section h-section-tight">
+          <h2 className="h2" style={{ marginBottom: 44 }}>Switch in three steps.</h2>
+          <div className="h-steps">
+            <div className="h-step"><div className="h-step-n">1</div><h3>Book a free 30-min call</h3><p>Talk through your business and the right plan. No pressure, no commitment.</p></div>
+            <div className="h-step"><div className="h-step-n">2</div><h3>We do the switch</h3><p>We deal with your old accountant, connect your accounts and get the books in order.</p></div>
+            <div className="h-step"><div className="h-step-n">3</div><h3>Get back to building</h3><p>Books kept, taxes filed on time, and the AI assistant on call 24/7.</p></div>
+          </div>
+          <div className="h-step-cta">
+            <a href={mailto()} className="btn-primary">Book your free call →</a>
+            <span>No commitment · 30 minutes · ACA qualified accountant</span>
+          </div>
+        </section>
       </div>
 
-      <div className="main">
-        {/* AI SECTION */}
-        <section className="section" id="ai">
-          <div className="section-label">AI assistant</div>
-          <h2>Instant answers to any tax question</h2>
-          <p className="section-sub">Powered by Claude AI, backed by an ACA-qualified accountant.</p>
+      {/* AI */}
+      <section className="h-ai" id="ai">
+        <div className="h-ai-inner">
+          <div>
+            <p className="h-kicker">AI TAX ASSISTANT</p>
+            <h2 className="h2">Tax questions at 2am? Fair enough.</h2>
+            <p className="h-ai-sub">
+              Instant answers on Irish and UK tax, VAT, limited companies and expenses, powered by
+              Claude and backed by a chartered accountant.
+            </p>
+            <p className="h-ai-note">{FREE_QUESTIONS} free questions · unlimited on every plan</p>
+          </div>
           <div className="ai-panel">
             <div className="ai-topbar">
               <div className="ai-title"><span className="ai-dot" /> FoundrBooks AI</div>
@@ -279,14 +233,11 @@ export default function Home() {
               <div className="ai-gate">
                 <div className="ai-gate-title">That's your free questions used.</div>
                 <p>
-                  The assistant is included with every plan. If you'd rather talk it through
-                  first, a 30-minute call costs nothing and you'll get a straight answer from
-                  a qualified accountant.
+                  The assistant is included with every plan. If you'd rather talk it through first,
+                  a 30-minute call costs nothing and you'll get a straight answer from a qualified accountant.
                 </p>
                 <div className="hero-btns">
-                  <a href={mailto("Question for FoundrBooks")} className="btn-primary btn-primary-blue">
-                    Book a free 30-min call →
-                  </a>
+                  <a href={mailto("Question for FoundrBooks")} className="btn-primary btn-primary-blue">Book a free 30-min call →</a>
                   <a href="#pricing" className="btn-ghost btn-ghost-light">See plans</a>
                 </div>
               </div>
@@ -301,162 +252,132 @@ export default function Home() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                   />
-                  <button className="send-btn" onClick={() => sendMessage()} disabled={loading} aria-label="Send message">↑</button>
+                  <button className="send-btn" onClick={() => sendMessage()} disabled={loading} aria-label="Send message">→</button>
                 </div>
                 <div className="ai-remaining">
-                  {FREE_QUESTIONS - askedCount} free question
-                  {FREE_QUESTIONS - askedCount === 1 ? "" : "s"} left · included with every plan
+                  {FREE_QUESTIONS - askedCount} free question{FREE_QUESTIONS - askedCount === 1 ? "" : "s"} left · included with every plan
                 </div>
               </>
             )}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* SERVICES */}
-        <section className="section" id="services">
-          <div className="section-label">Services</div>
-          <h2>Everything you need.</h2>
-          <p className="section-sub">
-            Specialist accounting for online founders, SaaS businesses, Shopify stores, and the self-employed.
-          </p>
-          <div className="services-grid">
-            {SERVICES.map((s, i) => {
-              const inner = (
-                <>
-                  <div className="service-icon">{s.icon}</div>
-                  <div className="service-name">{s.name}</div>
-                  <div className="service-desc">{s.desc}</div>
-                  {s.to && <div className="service-more">Learn more →</div>}
-                </>
-              );
-              return s.to ? (
-                <Link key={i} to={s.to} className={"service-card service-card-link" + (s.wide ? " service-card-wide" : "")}>{inner}</Link>
-              ) : (
-                <div key={i} className="service-card">{inner}</div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* HOW IT WORKS */}
-        <section className="section how-section">
-          <div className="section-label">How it works</div>
-          <h2>Up and running in 3 steps.</h2>
-          <p className="section-sub">Switching accountants or starting fresh — we make it completely painless.</p>
-          <div className="steps-grid">
-            <div className="step-card">
-              <div className="step-num">01</div>
-              <div className="step-icon">📞</div>
-              <div className="step-name">Book a free 30-min call</div>
-              <div className="step-desc">We learn about your business, answer your questions, and recommend the right plan. No pressure, no commitment.</div>
-            </div>
-            <div className="step-card">
-              <div className="step-num">02</div>
-              <div className="step-icon">⚙️</div>
-              <div className="step-name">We set everything up</div>
-              <div className="step-desc">We handle the transition from your old accountant, connect your accounts, and get your books in order. You don't lift a finger.</div>
-            </div>
-            <div className="step-card">
-              <div className="step-num">03</div>
-              <div className="step-icon">😌</div>
-              <div className="step-name">Sit back and relax</div>
-              <div className="step-desc">Your books are handled, your taxes are filed on time, and your AI assistant is available 24/7 for any questions.</div>
-            </div>
-          </div>
-          <div className="how-cta">
-            <a href={mailto()} className="btn-primary btn-primary-blue">Book your free call →</a>
-            <span className="how-note">No commitment · 30 minutes · ACA qualified accountant</span>
-          </div>
-        </section>
-
-        {/* PRICING */}
-        <section className="section" id="pricing">
-          <div className="section-label">Pricing</div>
-          <h2>Simple pricing.</h2>
-          <p className="section-sub">
-            All plans include the AI assistant, monthly reports, and direct accountant access. Cancel anytime.
-          </p>
-          <div className="pricing-grid">
-            {PLANS.map((plan, i) => (
-              <div key={i} className={`price-card ${plan.featured ? "featured" : ""}`}>
-                {plan.featured && <div className="price-badge">Most popular</div>}
-                <div className="price-name">{plan.name}</div>
-                <div className="price-desc">{plan.desc}</div>
-                <div className="price-amount">{plan.price}<span className="price-per">/mo</span></div>
-                <div className="price-period">cancel anytime · EUR</div>
-                <div className="price-features">
-                  {plan.features.map((f, j) => (
-                    <div key={j} className="price-feature"><span className="check">✓</span> {f}</div>
-                  ))}
-                </div>
-                <button
-                  className="price-cta"
-                  onClick={() => handleCheckout(plan)}
-                  disabled={checkingOut === plan.name}
-                >
-                  {checkingOut === plan.name ? "Loading..." : `Get started with ${plan.name} →`}
-                </button>
+      {/* PRICING */}
+      <section className="h-section" id="pricing">
+        <div className="h-center">
+          <h2 className="h2">Flat monthly. No surprises.</h2>
+          <p className="h-lede">Every plan: AI assistant, monthly reports and a direct line to your accountant. Cancel anytime.</p>
+        </div>
+        <div className="h-pricing">
+          {PLANS.map((plan) => (
+            <div key={plan.name} className={"h-plan" + (plan.featured ? " h-plan-hot" : "")}>
+              <div className="h-plan-top">
+                <div><h3>{plan.name}</h3><p className="h-plan-for">{plan.desc}</p></div>
+                {plan.featured && <span className="h-pop">Most popular</span>}
               </div>
-            ))}
-          </div>
-          <div className="oneoff-card">
-            <div className="oneoff-text">
-              <div className="oneoff-label">One-off · alongside any plan</div>
-              <div className="oneoff-name">FRS 102 Section 23 switchover</div>
-              <div className="oneoff-desc">
-                The 2026 revenue rules, done once: your contracts reviewed, the retained earnings adjustment
-                calculated and reconciled, the journal posted and the note for your accounts drafted.
-                Fixed fee per company, agreed before we start.
-              </div>
+              <div className="h-plan-price">{plan.price}<span>/mo</span></div>
+              <ul>
+                {plan.features.map((f) => (
+                  <li key={f}><Tick size={18} />{f}</li>
+                ))}
+              </ul>
+              <button className="h-plan-btn" onClick={() => handleCheckout(plan)} disabled={checkingOut === plan.name}>
+                {checkingOut === plan.name ? "Loading…" : `Get started with ${plan.name}`}
+              </button>
             </div>
-            <div className="oneoff-actions">
-              <a
-                href={whatsappLink(WA_SECTION_23)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="price-cta oneoff-cta"
-              >
-                Get a quote on WhatsApp
-              </a>
-              <Link to="/frs-102-section-23" className="oneoff-more">What's involved →</Link>
-            </div>
+          ))}
+        </div>
+        <div className="h-oneoff">
+          <div>
+            <div className="h-oneoff-k">ONE-OFF · ALONGSIDE ANY PLAN</div>
+            <h3>FRS 102 Section 23 switchover</h3>
+            <p>
+              The 2026 revenue rules, done once: contracts reviewed, the retained earnings adjustment
+              calculated and reconciled, the journal posted and the accounts note drafted. Fixed fee per
+              company, agreed before we start.
+            </p>
           </div>
-          <p className="pricing-note">All prices in EUR. Secure payment via Stripe. Cancel anytime with no fees.</p>
-        </section>
+          <div className="h-oneoff-actions">
+            <a href={whatsappLink(WA_SECTION_23)} target="_blank" rel="noopener noreferrer" className="btn-primary">Get a quote on WhatsApp</a>
+            <Link to="/frs-102-section-23" className="h-link">What's involved →</Link>
+          </div>
+        </div>
+        <p className="h-note">All prices in EUR · Secure payment by Stripe · No cancellation fees</p>
+      </section>
 
-        {/* REVIEWS */}
-        <section className="section reviews-section">
-          <div className="section-label">Client reviews</div>
-          <h2>Trusted by founders.</h2>
-          <p className="section-sub">Real feedback from real clients — founders, freelancers, and online businesses.</p>
-          <div className="reviews-grid">
-            {REVIEWS.map((r, i) => (
-              <div key={i} className="review-card">
-                <div className="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-                <p className="review-text">"{r.text}"</p>
-                <div className="review-author">
-                  <div className="review-avatar">{r.initial}</div>
-                  <div>
-                    <div className="review-name">{r.name}</div>
-                    <div className="review-role">{r.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
+      {/* CREDENTIALS */}
+      <section className="h-creds" aria-label="Credentials">
+        <div className="h-creds-inner">
+          <div className="h-creds-list">
+            <a className="h-cred" href={CREDENTIAL.directoryUrl} target="_blank" rel="noopener noreferrer">ACA · {CREDENTIAL.body} ↗</a>
+            <span className="h-cred">{XERO.partnerLabel} · {XERO.short}</span>
+            <span className="h-cred">{A2X.short}</span>
+            <span className="h-cred">24h response</span>
           </div>
-        </section>
+          <Badges />
+        </div>
+      </section>
 
-        {/* STATS */}
-        <section className="section stats-section">
-          <div className="stats-grid">
-            <div className="stat-cell"><div className="stat-num">ACA</div><div className="stat-lbl">Qualified accountant</div></div>
-            <div className="stat-cell"><div className="stat-num">24h</div><div className="stat-lbl">Response guarantee</div></div>
-            <div className="stat-cell"><div className="stat-num">EU</div><div className="stat-lbl">Cross-border expertise</div></div>
+      {/* REVIEWS */}
+      <section className="h-section">
+        <div className="h-reviews">
+          <div>
+            <div className="h-stars" aria-label="Rated 5 out of 5 on Google">★★★★★</div>
+            <h2 className="h2" style={{ fontSize: "clamp(30px, 4vw, 48px)", marginTop: 10 }}>Rated 5.0 on Google.</h2>
+            <p>Read what clients actually say, unedited, on our Google Business Profile.</p>
           </div>
-        </section>
-      </div>
+          <a href={GOOGLE_PROFILE.url} target="_blank" rel="noopener noreferrer" className="btn-primary">Read the reviews ↗</a>
+        </div>
+      </section>
+
+      {/* MERCH */}
+      <section className="h-merch">
+        <div className="h-merch-inner">
+          <div>
+            <p className="h-oneoff-k" style={{ color: "#0D0D0F" }}>THE MERCH</p>
+            <h2 className="h2">The monkey does the books.</h2>
+            <p>Basic tees in black, white and woodland camo, plus the sticker pack. Printed on demand, shipped to the UK, Ireland and EU.</p>
+            <Link to="/shop" className="btn-primary">Shop the merch →</Link>
+          </div>
+          <div className="h-merch-art" aria-hidden="true">
+            <img className="h-merch-logo" src="/merch/logo-filled.png" alt="" width="300" height="300" />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="h-cta">
+        <h2 className="h2">Hand over the books.</h2>
+        <p>Free 30-minute call · No commitment · Straight to a chartered accountant</p>
+        <div className="hero-btns">
+          <a href={mailto()} className="btn-primary">Book your free call</a>
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn-ghost">Message on WhatsApp</a>
+        </div>
+      </section>
 
       <Footer />
     </div>
   );
 }
+
+function Tick({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12l5 5L20 7" />
+    </svg>
+  );
+}
+
+const MARQUEE = ["SELF ASSESSMENT", "VAT & OSS", "SAAS MRR", "SHOPIFY + A2X", "R&D CREDITS", "PAYROLL", "FRS 102", "CORPORATION TAX"];
+
+const SERVICE_CARDS = [
+  { name: "SaaS finance", desc: "MRR tracking, IFRS 15 revenue recognition and investor-ready metrics.", to: "/saas-accounting", more: "SaaS accounting" },
+  { name: "Shopify & e-commerce", desc: "A2X certified. Payouts split into sales, fees, refunds and VAT that reconcile." },
+  { name: "Startup accounting", desc: "Bookkeeping from incorporation through to Series A and beyond." },
+  { name: "R&D tax credits", desc: "35% in Ireland, merged RDEC in the UK. Claims we can defend.", to: "/rd-tax-credits", more: "R&D guide" },
+  { name: "VAT & cross-border", desc: "Registration, OSS and digital services VAT across the UK and EU.", to: "/vat-digital-services", more: "VAT guide" },
+  { name: "Payroll", desc: "Monthly payroll in Ireland and the UK, registrations through to year-end filings." },
+  { name: "Ireland or UK?", desc: "Where to incorporate, and what each choice costs you in tax.", to: "/ireland-vs-uk-company", more: "Compare" },
+  { name: "AI tax assistant", desc: "24/7 instant answers, backed by a qualified accountant.", href: "#ai", more: "Try it", dark: true },
+];

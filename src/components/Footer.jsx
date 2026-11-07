@@ -7,8 +7,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div>
-          <div className="logo" style={{ marginBottom: 8 }}>
-            Foundr<span>Books</span>
+          <div className="logo">
+            <img className="logo-mark" src="/merch/head-64.png" alt="" width="40" height="40" />
+            FoundrBooks
           </div>
           <p className="footer-desc">
             Specialist accounting for founders, freelancers and the self-employed across the UK
@@ -41,6 +42,7 @@ export default function Footer() {
             <a href="/#services">Startup accounting</a>
             <a href="/#pricing">Pricing</a>
             <a href="/#ai">AI tax assistant</a>
+            <Link to="/shop">Merch shop</Link>
           </div>
           <div className="footer-col">
             <div className="footer-col-title">Contact</div>

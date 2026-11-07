@@ -497,6 +497,17 @@ export const ROUTES = {
     priority: "0.9",
   },
 
+  "/shop": {
+    title: "FoundrBooks Merch — Founder T-Shirts & Accounting Stickers",
+    description:
+      "Tees and die-cut stickers for founders who know the difference between revenue and cash. Printed on demand and shipped to the UK, Ireland and EU.",
+    ogTitle: "FoundrBooks Merch — wear your burn rate",
+    ogDescription: "Founder tees and accounting stickers. Printed on demand, shipped UK, Ireland & EU.",
+    keywords: "founder t-shirt, startup t-shirt, accountant t-shirt, accounting stickers, startup stickers, SaaS merch",
+    changefreq: "monthly",
+    priority: "0.5",
+  },
+
   "/success": {
     title: "Subscription confirmed | FoundrBooks",
     description: "Your FoundrBooks subscription is confirmed.",

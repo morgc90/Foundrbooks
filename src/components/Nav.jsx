@@ -16,7 +16,8 @@ export default function Nav({ home = false }) {
   return (
     <nav className="nav">
       <Link to="/" className="logo">
-        Foundr<span>Books</span>
+        <img className="logo-mark" src="/merch/head-64.png" alt="" width="40" height="40" />
+        FoundrBooks
       </Link>
       <div className="nav-links">
         <a href={href("services")} className="nav-link">Services</a>
@@ -25,7 +26,7 @@ export default function Nav({ home = false }) {
         <a href={href("pricing")} className="nav-link">Pricing</a>
         <Link to="/ireland-or-uk" className="nav-link nav-link-secondary">Ireland or UK?</Link>
         <Link to="/about" className="nav-link">About</Link>
-        <a href={href("ai")} className="nav-link nav-link-secondary">AI assistant</a>
+        <Link to="/shop" className="nav-link nav-link-shop">Shop</Link>
         <a href={mailto()} className="nav-cta">Free 30-min call</a>
       </div>
     </nav>

@@ -127,14 +127,6 @@ export const SERVICES = [
   { icon: "✨", name: "AI tax assistant", desc: "24/7 instant answers backed by a qualified accountant." },
 ];
 
-export const REVIEWS = [
-  { name: "Sarah Chen", role: "Founder, TechFlow SaaS", text: "FoundrBooks helped us navigate complex revenue recognition and investor reporting. Their SaaS expertise is unmatched.", initial: "S" },
-  { name: "David Murphy", role: "CEO, GreenStore", text: "As a Shopify store owner, having an accountant who truly understands e-commerce has been game-changing for our business.", initial: "D" },
-  { name: "James O'Brien", role: "Freelance Designer", text: "I used to dread tax season. Now it's completely stress-free. My self assessment is filed on time every year without me lifting a finger.", initial: "J" },
-  { name: "Aoife Kelly", role: "Co-founder, LaunchPad", text: "From incorporation to our first funding round, FoundrBooks has been with us every step. Genuinely feel like they're part of the team.", initial: "A" },
-  { name: "Marco Rossi", role: "Director, Rossi Consulting", text: "The AI assistant alone is worth it — I get instant answers to tax questions at 11pm without waiting for a call back.", initial: "M" },
-  { name: "Emma Walsh", role: "Owner, The Candle Co.", text: "Switched from a big accountancy firm and the difference is night and day. Personal, fast, and they actually explain things clearly.", initial: "E" },
-];
 
 export const QUICK_PROMPTS = [
   { label: "Sole trader vs Ltd?", q: "Am I better off as a sole trader or limited company?" },

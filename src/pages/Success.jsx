@@ -4,6 +4,23 @@ import { CONTACT } from "../data";
 export default function Success() {
   const [params] = useSearchParams();
   const plan = params.get("plan");
+  const merch = params.get("order") === "merch";
+
+  if (merch) {
+    return (
+      <div className="success-screen">
+        <div className="success-card">
+          <div className="success-icon">✓</div>
+          <h1>Order confirmed.</h1>
+          <p>Thanks! Your merch is being printed to order. You'll get a receipt by email and a tracking link once it ships.</p>
+          <p className="success-contact">
+            Questions? Email us at <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+          </p>
+          <Link to="/shop" className="success-back">Back to the shop</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="success-screen">
