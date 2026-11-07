@@ -8,8 +8,10 @@ import { CAMO_SVG } from "../camo";
 const BAG_KEY = "fb_bag";
 const eur = (n) => `€${n % 1 ? n.toFixed(2) : n}`;
 
+// Oversized streetwear cut: dropped shoulders, wide boxy body, long loose sleeves.
 const TEE_PATH =
-  "M95 20 L60 30 L10 72 L38 118 L66 102 L66 304 L234 304 L234 102 L262 118 L290 72 L240 30 L205 20 Q150 58 95 20 Z";
+  "M112 20 L44 34 Q20 40 14 62 L4 132 L62 146 L66 112 L64 300 L236 300 L234 112 L238 146 L296 132 L286 62 Q280 40 256 34 L188 20 Q150 50 112 20 Z";
+const COLLAR = "M108 21 Q150 60 192 21";
 
 function Tee({ item }) {
   const clip = `clip-${item.id}`;
@@ -25,8 +27,9 @@ function Tee({ item }) {
         ) : (
           <path d={TEE_PATH} fill={item.shirt} stroke="#0D0D0F" strokeWidth="4" strokeLinejoin="round" />
         )}
+        <path d={COLLAR} fill="none" stroke={item.shirt === "#141416" ? "#3A3A3F" : "#0D0D0F"} strokeWidth="3" strokeLinecap="round" />
       </svg>
-      <img className="tee-chest" src={item.chest} alt="" width="40" height="40" />
+      <img className="tee-chest" src={item.chest} alt="" width="28" height="28" />
     </div>
   );
 }
