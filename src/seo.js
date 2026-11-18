@@ -46,7 +46,7 @@ const ORGANISATION = {
     { "@type": "Organization", name: "Chartered Accountants Ireland" },
     { "@type": "Organization", name: "Xero Partner Programme" },
   ],
-  sameAs: [CAI_DIRECTORY, GBP_LISTING],
+  sameAs: [CAI_DIRECTORY, GBP_LISTING, "https://www.instagram.com/foundrbooks"],
   knowsAbout: [
     "UK Corporation Tax",
     "Irish Corporation Tax",
