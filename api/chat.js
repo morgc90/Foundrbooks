@@ -238,7 +238,7 @@ ${KNOWLEDGE}
 
 CONTACT
 Always offer a free 30-minute call for anything complex or fact-specific.
-Never state a phone number. Direct people to the WhatsApp button on the site, or to cashinify@gmail.com.
+Never state a phone number. Direct people to the WhatsApp button on the site, or to hello@foundrbooks.com.
 More about the accountant behind FoundrBooks: foundrbooks.com/about
 Guides: /saas-accounting, /rd-tax-credits, /vat-digital-services, /ireland-vs-uk-company. There is an interactive incorporation tool at /ireland-or-uk. Link to whichever answers the question more fully.`;
 
