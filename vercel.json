@@ -72,12 +72,12 @@
     },
     {
       "source": "/category/e-commerce",
-      "destination": "/",
+      "destination": "/shopify-accountant",
       "permanent": true
     },
     {
       "source": "/category/e-commerce/",
-      "destination": "/",
+      "destination": "/shopify-accountant",
       "permanent": true
     },
     {
@@ -88,36 +88,6 @@
     {
       "source": "/category/tax/",
       "destination": "/rd-tax-credits",
-      "permanent": true
-    },
-    {
-      "source": "/key-metrics-every-saas-founder-should-track",
-      "destination": "/saas-accounting",
-      "permanent": true
-    },
-    {
-      "source": "/key-metrics-every-saas-founder-should-track/",
-      "destination": "/saas-accounting",
-      "permanent": true
-    },
-    {
-      "source": "/tax-planning-for-startups-tips-for-year-end",
-      "destination": "/rd-tax-credits",
-      "permanent": true
-    },
-    {
-      "source": "/tax-planning-for-startups-tips-for-year-end/",
-      "destination": "/rd-tax-credits",
-      "permanent": true
-    },
-    {
-      "source": "/understanding-ifrs-15-for-saas-companies",
-      "destination": "/saas-accounting",
-      "permanent": true
-    },
-    {
-      "source": "/understanding-ifrs-15-for-saas-companies/",
-      "destination": "/saas-accounting",
       "permanent": true
     }
   ],
