@@ -2,7 +2,7 @@ import { ARTICLES } from "./articles";
 // Shared content data used by both the client app and the prerender step.
 
 export const CONTACT = {
-  email: "cashinify@gmail.com",
+  email: "hello@foundrbooks.com",
   // The number is never displayed on the site — it only lives inside the
   // wa.me deep link so visitors start a WhatsApp chat instead of dialling.
   whatsapp: "https://wa.me/353874101271",
