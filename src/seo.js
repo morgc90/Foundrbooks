@@ -19,7 +19,7 @@ const CAI_DIRECTORY =
 // Links the site to the Maps listing so Google treats them as one entity.
 const GBP_LISTING = GOOGLE_PROFILE.url;
 
-const CONTACT_EMAIL = "cashinify@gmail.com";
+const CONTACT_EMAIL = "hello@foundrbooks.com";
 
 const ORGANISATION = {
   "@context": "https://schema.org",
