@@ -6,7 +6,7 @@ import { GUIDES } from "../data";
  * page ranks poorly no matter how good it is.
  */
 export default function GuideLinks({ current }) {
-  const others = GUIDES.filter((g) => g.to !== current);
+  const others = GUIDES.filter((g) => g.to !== current).slice(0, 6);
   if (!others.length) return null;
 
   return (
