@@ -3,21 +3,151 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.foundrbooks.com"
+        }
+      ],
+      "destination": "https://foundrbooks.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/services-pricing",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/services-pricing/",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/resources/",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/category/saas",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/category/saas/",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/category/startups",
+      "destination": "/ireland-or-uk",
+      "permanent": true
+    },
+    {
+      "source": "/category/startups/",
+      "destination": "/ireland-or-uk",
+      "permanent": true
+    },
+    {
+      "source": "/category/e-commerce",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/category/e-commerce/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/category/tax",
+      "destination": "/rd-tax-credits",
+      "permanent": true
+    },
+    {
+      "source": "/category/tax/",
+      "destination": "/rd-tax-credits",
+      "permanent": true
+    },
+    {
+      "source": "/key-metrics-every-saas-founder-should-track",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/key-metrics-every-saas-founder-should-track/",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/tax-planning-for-startups-tips-for-year-end",
+      "destination": "/rd-tax-credits",
+      "permanent": true
+    },
+    {
+      "source": "/tax-planning-for-startups-tips-for-year-end/",
+      "destination": "/rd-tax-credits",
+      "permanent": true
+    },
+    {
+      "source": "/understanding-ifrs-15-for-saas-companies",
+      "destination": "/saas-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/understanding-ifrs-15-for-saas-companies/",
+      "destination": "/saas-accounting",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
   ],
   "headers": [
     {
       "source": "/static/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ]
