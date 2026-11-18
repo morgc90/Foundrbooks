@@ -23,7 +23,11 @@ const CONTACT_EMAIL = "cashinify@gmail.com";
 const ORGANISATION = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
+  "@id": `${SITE}/#organization`,
   name: "FoundrBooks",
+  alternateName: ["Foundr Books", "FoundrBooks Accounting", "foundrbooks.com"],
+  logo: `${SITE}/logo512.png`,
+  image: OG_IMAGE,
   description:
     "AI-powered accounting for UK and Irish founders and startups. Chartered accountant specialising in limited companies, SaaS businesses, and early-stage companies.",
   url: SITE,
@@ -66,6 +70,19 @@ const ORGANISATION = {
     { "@type": "Offer", name: "Growth", price: "249", priceCurrency: "EUR" },
     { "@type": "Offer", name: "Scale", price: "449", priceCurrency: "EUR" },
   ],
+};
+
+// WebSite entity: tells Google the site's name so branded searches for
+// "FoundrBooks" show the brand (not "Foundr" or "Foundation Books").
+const WEBSITE = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE}/#website`,
+  name: "FoundrBooks",
+  alternateName: ["Foundr Books", "foundrbooks.com"],
+  url: `${SITE}/`,
+  publisher: { "@id": `${SITE}/#organization` },
+  inLanguage: "en-GB",
 };
 
 const faqPage = (items) => ({
@@ -321,15 +338,15 @@ const ABOUT_FAQ = [
 
 export const ROUTES = {
   "/": {
-    title: "FoundrBooks — Accounting for UK & Irish Founders and Startups | ACA Qualified",
+    title: "FoundrBooks | Startup & SaaS Accountants, Ireland & UK",
     description:
-      "FoundrBooks is an AI-powered accounting service for UK and Irish founders and startups. Chartered accountant, instant AI tax assistant, transparent pricing. Specialists in limited companies, SaaS, and early-stage businesses.",
+      "FoundrBooks: ACA chartered accountants for startups, SaaS and Shopify businesses in Ireland and the UK. Flat monthly pricing, Xero, and an AI tax assistant.",
     ogTitle: "FoundrBooks — Accounting for UK & Irish Founders and Startups",
     ogDescription:
       "Chartered accounting with a live AI tax assistant. Built for UK and Irish founders, startups, and limited companies. Transparent monthly pricing, no surprises.",
     keywords:
       "accounting for startups UK, accountant for founders UK, accountant for startups Ireland, limited company accountant UK, startup accountant Ireland, chartered accountant Dublin, AI accounting UK Ireland, corporation tax UK startup, VAT registration Ireland, SaaS accountant UK, R&D tax credits UK Ireland",
-    jsonLd: [ORGANISATION, faqPage(HOME_FAQ)],
+    jsonLd: [WEBSITE, ORGANISATION, faqPage(HOME_FAQ)],
     changefreq: "weekly",
     priority: "1.0",
   },
@@ -351,7 +368,7 @@ export const ROUTES = {
   "/saas-accounting": {
     title: "SaaS Accounting for Irish & UK Software Companies | FoundrBooks",
     description:
-      "Specialist accountants for SaaS founders in Ireland and the UK. Revenue recognition, deferred revenue, ARR reporting, R&D tax credits and VAT OSS — from €99/month.",
+      "Specialist accountants for SaaS founders in Ireland and the UK. Revenue recognition, deferred revenue, ARR reporting, R&D tax credits and cross-border VAT.",
     ogTitle: "SaaS Accounting for Irish & UK Software Companies",
     ogDescription:
       "Chartered accountants for subscription software businesses. IFRS 15 revenue recognition, deferred revenue schedules, ARR reporting, R&D credits and cross-border VAT.",
@@ -558,7 +575,7 @@ export function headTagsFor(pathname) {
     { name: "geo.placename", content: "United Kingdom, Ireland" },
   ];
 
-  if (m.keywords) tags.push({ name: "keywords", content: m.keywords });
+  // meta keywords intentionally not emitted: ignored by Google, reads as stuffing.
 
   return { title: m.title, canonical: url, tags, jsonLd: m.jsonLd || [] };
 }
