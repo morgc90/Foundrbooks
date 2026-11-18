@@ -7,6 +7,7 @@
 // Re-check after each Budget / Finance Act before publishing changes.
 
 import { GOOGLE_PROFILE } from "./data";
+import { ARTICLES } from "./articles";
 
 export const SITE = "https://foundrbooks.com";
 export const OG_IMAGE = `${SITE}/og-image.png`;
@@ -537,6 +538,37 @@ export const ROUTES = {
     noindex: true,
   },
 };
+
+// Articles and simple service pages from src/articles.js.
+for (const a of ARTICLES) {
+  const url = `${SITE}${a.path}`;
+  const main =
+    a.kind === "service"
+      ? service(a.guideName, a.serviceType, a.description, a.path)
+      : {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: a.h1,
+          description: a.description,
+          url,
+          mainEntityOfPage: url,
+          image: OG_IMAGE,
+          datePublished: "2026-11-18",
+          dateModified: "2026-11-18",
+          inLanguage: "en-GB",
+          author: { "@type": "Person", name: "Morgan Cashin", jobTitle: "Chartered Accountant (ACA)", url: `${SITE}/about` },
+          publisher: { "@id": `${SITE}/#organization`, "@type": "Organization", name: "FoundrBooks", logo: { "@type": "ImageObject", url: `${SITE}/logo512.png` } },
+        };
+  ROUTES[a.path] = {
+    title: a.title,
+    description: a.description,
+    ogTitle: a.h1,
+    ogDescription: a.description,
+    jsonLd: [main, ...(a.faq && a.faq.length ? [faqPage(a.faq)] : [])],
+    changefreq: "monthly",
+    priority: a.kind === "service" ? "0.9" : "0.7",
+  };
+}
 
 // Routes that get prerendered to static HTML and (unless noindex) listed in the sitemap.
 export const PRERENDER_ROUTES = Object.keys(ROUTES);
