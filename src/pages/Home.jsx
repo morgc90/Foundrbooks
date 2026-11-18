@@ -90,7 +90,7 @@ export default function Home() {
       {/* HERO */}
       <section className="h-hero">
         <div>
-          <div className="hero-badge"><span className="badge-dot" />ACA chartered accountant · UK &amp; Ireland</div>
+          <div className="hero-badge"><span className="badge-dot" />FoundrBooks · ACA chartered accountants for startups · UK &amp; Ireland</div>
           <h1>Accounting for people who'd rather be <span className="hl">building.</span></h1>
           <p className="h-hero-sub">
             A chartered accountant, real-time bookkeeping and an AI tax assistant that answers at 2am.
