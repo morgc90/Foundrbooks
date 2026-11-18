@@ -10,6 +10,8 @@ import IrelandVsUk from "./pages/IrelandVsUk";
 import IrelandOrUk from "./pages/IrelandOrUk";
 import Frs102Section23 from "./pages/Frs102Section23";
 import Shop from "./pages/Shop";
+import Article from "./pages/Article";
+import { ARTICLE_PATHS } from "./articles";
 import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
 import "./App.css";
@@ -28,6 +30,9 @@ export default function App() {
         <Route path="/ireland-vs-uk-company" element={<IrelandVsUk />} />
         <Route path="/ireland-or-uk" element={<IrelandOrUk />} />
         <Route path="/frs-102-section-23" element={<Frs102Section23 />} />
+        {ARTICLE_PATHS.map((p) => (
+          <Route key={p} path={p} element={<Article path={p} />} />
+        ))}
         <Route path="/shop" element={<Shop />} />
         <Route path="/success" element={<Success />} />
         <Route path="/404" element={<NotFound />} />
