@@ -1,3 +1,4 @@
+import { ARTICLES } from "./articles";
 // Shared content data used by both the client app and the prerender step.
 
 export const CONTACT = {
@@ -142,4 +143,5 @@ export const GUIDES = [
   { to: "/vat-digital-services", name: "VAT on digital services", desc: "OSS, reverse charge and cross-border thresholds." },
   { to: "/ireland-vs-uk-company", name: "Ireland or UK?", desc: "Where to incorporate and what it costs in tax." },
   { to: "/frs-102-section-23", name: "FRS 102 Section 23", desc: "The 2026 revenue rules in plain English — and whether they affect you." },
+  ...ARTICLES.map((a) => ({ to: a.path, name: a.guideName, desc: a.guideDesc })),
 ];
